@@ -1,6 +1,6 @@
 package com.revature.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "actors")
@@ -27,14 +29,15 @@ public class Actor {
 	private String lastname;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Movie> starredIn;
+	@JsonBackReference
+	private Set<Movie> starredIn;
 
 	public Actor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Actor(int id, String firstname, String lastname, List<Movie> starredIn) {
+	public Actor(int id, String firstname, String lastname, Set<Movie> starredIn) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -66,11 +69,11 @@ public class Actor {
 		this.lastname = lastname;
 	}
 
-	public List<Movie> getStarredIn() {
+	public Set<Movie> getStarredIn() {
 		return starredIn;
 	}
 
-	public void setStarredIn(List<Movie> starredIn) {
+	public void setStarredIn(Set<Movie> starredIn) {
 		this.starredIn = starredIn;
 	}
 
