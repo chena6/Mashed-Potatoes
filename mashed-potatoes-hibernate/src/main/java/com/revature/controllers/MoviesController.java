@@ -21,6 +21,11 @@ public class MoviesController {
 	@Autowired
 	MovieService msvc;
 	
+	@GetMapping
+	public String printHelloMovies() {
+		return "Hello movies!";
+	}
+	
 	@GetMapping("search={query}")
 	public List<Movie> searchMovies(@PathVariable String query) {
 		
