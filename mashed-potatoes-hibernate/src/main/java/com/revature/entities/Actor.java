@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,7 +30,11 @@ public class Actor {
 	private String firstname;
 	private String lastname;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "movie_actor", 
+		joinColumns = @JoinColumn(name="actor_id"),
+		inverseJoinColumns = @JoinColumn(name="movie_id")
+	)
 	@JsonBackReference
 	private Set<Movie> starredIn;
 

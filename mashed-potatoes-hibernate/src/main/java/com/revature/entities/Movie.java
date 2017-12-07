@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -25,7 +26,10 @@ public class Movie {
 	
 	private String title;
 	private String year;
-	private double rating;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rating_id")
+	private Rating rating;
 	private String runtime;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -55,7 +59,7 @@ public class Movie {
 		super();
 	}
 
-	public Movie(String id, String title, String year, double rating, String runtime, Director director, String plot,
+	public Movie(String id, String title, String year, Rating rating, String runtime, Director director, String plot,
 			String poster, Set<Genre> genres, Set<Actor> actors) {
 		super();
 		this.id = id;
@@ -94,11 +98,11 @@ public class Movie {
 		this.year = year;
 	}
 
-	public double getRating() {
+	public Rating getRating() {
 		return rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(Rating rating) {
 		this.rating = rating;
 	}
 
@@ -158,9 +162,7 @@ public class Movie {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((plot == null) ? 0 : plot.hashCode());
 		result = prime * result + ((poster == null) ? 0 : poster.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(rating);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result + ((runtime == null) ? 0 : runtime.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
@@ -196,7 +198,10 @@ public class Movie {
 				return false;
 		} else if (!poster.equals(other.poster))
 			return false;
-		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
 			return false;
 		if (runtime == null) {
 			if (other.runtime != null)
@@ -215,7 +220,7 @@ public class Movie {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", title=" + title + ", year=" + year + ", rating=" + rating + ", runtime=" + runtime
