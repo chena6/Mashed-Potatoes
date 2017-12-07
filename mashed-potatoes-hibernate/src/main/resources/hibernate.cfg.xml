@@ -9,7 +9,7 @@
         <property name="hibernate.connection.url">jdbc:oracle:thin:@orcl.cdez5mt7s5vh.us-east-2.rds.amazonaws.com:1521:ORCL</property>
         <property name="hibernate.connection.username">mashed</property>
         <property name="hibernate.connection.password">p4ssw0rd</property>
-        <property name="hibernate.connection.pool_size">35</property>
+        <property name="hibernate.connection.pool_size">10</property>
         
         <!-- The property that must not be used -->
         <!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
