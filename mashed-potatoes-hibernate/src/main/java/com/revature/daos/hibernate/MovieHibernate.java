@@ -96,7 +96,7 @@ public class MovieHibernate implements MovieDAO {
 
 		Criteria crit = sess.createCriteria(Movie.class);
 		crit.createAlias("rating", "ratingj");
-		crit.add(Restrictions.eq("ratingj.rating", rating));
+		crit.add(Restrictions.ilike("ratingj.rating", rating, MatchMode.ANYWHERE));
 
 		return new HashSet<Movie>(crit.list());
 	}
