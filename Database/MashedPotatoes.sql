@@ -31,7 +31,7 @@ conn mashed/p4ssw0rd
 CREATE TABLE USERS 
 (
   USER_ID INTEGER NOT NULL 
-, EMAIL VARCHAR2(20) NOT NULL 
+, EMAIL VARCHAR2(60) NOT NULL 
 , USERNAME VARCHAR2(20) NOT NULL 
 , PASSWORD VARCHAR2(20) NOT NULL 
 , FIRSTNAME VARCHAR2(20) NOT NULL 
@@ -78,9 +78,10 @@ CREATE TABLE DIRECTORS
 , LASTNAME VARCHAR2(20) NOT NULL 
 );
 
-CREATE TABLE USER_REVIEWS 
+CREATE TABLE REVIEWS 
 (
-  USER_ID INTEGER NOT NULL
+  REVIEW_ID INTEGER NOT NULL
+, USER_ID INTEGER NOT NULL
 , MOVIE_ID VARCHAR2(20) NOT NULL
 , REVIEW VARCHAR2(300) NOT NULL
 );
@@ -103,10 +104,11 @@ CREATE TABLE GENRES
 , GENRE VARCHAR(20) NOT NULL 
 );
 
-CREATE TABLE USER_COMMENTS 
+CREATE TABLE COMMENTS 
 (
   COMMENT_ID INTEGER NOT NULL 
 , USER_ID INTEGER NOT NULL 
+, MOVIE_iD INTEGER NOT NULL
 , COMMENTS VARCHAR2(300) NOT NULL
 );
 
@@ -127,11 +129,11 @@ alter table "MOVIE_ACTOR" add constraint MOVIEACTOR_PK primary key("ACTOR_ID","M
 alter table "ACTORS" add constraint ACTOR_PK primary key("ACTOR_ID"); 
 alter table "MOVIE_GENRE" add constraint MOVIEGENRE_PK primary key("MOVIE_ID","GENRE_ID");
 alter table "DIRECTORS" add constraint DIRECTORS_PK primary key("DIRECTOR_ID");
-alter table "USER_REVIEWS" add constraint USER_REVIEWS_PK primary key("USER_ID","MOVIE_ID");
+alter table "REVIEWS" add constraint REVIEWS_PK primary key("REVIEW_ID");
 alter table "USER_BACKLOG" add constraint USER_BACKLOG_PK primary key("USER_ID","MOVIE_ID");
 alter table "USER_WATCHED" add constraint USER_WATCHED_PK primary key("USER_ID","MOVIE_ID");
 alter table "GENRES" add constraint GENRES_PK primary key("GENRE_ID");
-alter table "USER_COMMENTS" add constraint USER_COMMENTS_PK primary key("COMMENT_ID");
+alter table "COMMENTS" add constraint COMMENTS_PK primary key("COMMENT_ID");
 alter table "RATINGS" add constraint RATINGS_PK primary key("RATING_ID");
 
 /*****************************************************************************
@@ -145,11 +147,11 @@ alter table "MOVIE_GENRE" add constraint MOVIE_GENRE_MOVIE_FK foreign key("MOVIE
 alter table "MOVIE_GENRE" add constraint MOVIE_GENRE_GENRE_FK foreign key("GENRE_ID") references "GENRES"("GENRE_ID");
 alter table "USER_BACKLOG" add constraint USER_BACKLOG_USER_FK foreign key("USER_ID") references "USERS"("USER_ID");
 alter table "USER_BACKLOG" add constraint USER_BACKLOG_MOVIE_FK foreign key("MOVIE_ID") references "MOVIES"("MOVIE_ID");
-alter table "USER_REVIEWS" add constraint USER_REVIEWS_USER_FK foreign key("USER_ID") references "USERS"("USER_ID");
-alter table "USER_REVIEWS" add constraint USER_REVIEWS_MOVIE_FK foreign key("MOVIE_ID") references "MOVIES"("MOVIE_ID");
+alter table "REVIEWS" add constraint REVIEWS_USER_FK foreign key("USER_ID") references "USERS"("USER_ID");
+alter table "REVIEWS" add constraint REVIEWS_MOVIE_FK foreign key("MOVIE_ID") references "MOVIES"("MOVIE_ID");
 alter table "USER_WATCHED" add constraint USER_WATCHED_USER_FK foreign key("USER_ID") references "USERS"("USER_ID");
 alter table "USER_WATCHED" add constraint USER_WATCHED_MOVIE_FK foreign key("MOVIE_ID") references "MOVIES"("MOVIE_ID");
-alter table "USER_COMMENTS" add constraint USER_COMMENTS_USER_FK foreign key("USER_ID") references "USERS"("USER_ID");
+alter table "COMMENTS" add constraint COMMENTS_USER_FK foreign key("USER_ID") references "USERS"("USER_ID");
 
 
 /*****************************************************************************
