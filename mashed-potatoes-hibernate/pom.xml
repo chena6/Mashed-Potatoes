@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>revature</groupId>
-	<artifactId>test-app</artifactId>
+	<artifactId>mashed-potatoes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -65,10 +65,6 @@
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-		</dependency>
 
 		<!-- Spring Context Support. A helper module for Spring Context. -->
 		<dependency>
@@ -84,11 +80,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-		</dependency>
-		<!-- A logging module that spring uses. -->
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -1,6 +1,6 @@
 package com.revature.controllers;
 
-import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +27,11 @@ public class MoviesController {
 	}
 	
 	@GetMapping("search={query}")
-	public List<Movie> searchMovies(@PathVariable String query) {
+	public Set<Movie> searchMovies(@PathVariable String query) {
 		
 		log.info("in search movies controller.");
 		
-		List<Movie> movies = msvc.getMoviesBySearch(query);
+		Set<Movie> movies = msvc.getMoviesBySearch(query);
 		
 		return movies;
 	}
