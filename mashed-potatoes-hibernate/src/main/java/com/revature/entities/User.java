@@ -32,34 +32,19 @@ public class User {
 
 	private String firstname;
 	private String lastname;
+	@Column(name = "role_id")
 	private int roleid;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "user_backlog", 
-		joinColumns = @JoinColumn(name="user_id"),
-		inverseJoinColumns = @JoinColumn(name="movie_id")
-	)
-	private List<Movie> backlog;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "user_watched", 
-		joinColumns = @JoinColumn(name="user_id"),
-		inverseJoinColumns = @JoinColumn(name="movie_id")
-	)
-	private List<Movie> watched;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "users_reviews",
-		joinColumns = @JoinColumn(name="user_id"),
-		inverseJoinColumns = @JoinColumn(name="movie_id")
-	)
-	private List<Movie> reviewed;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Review> reviews;
 	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public User(int id, String email, String username, String password, String firstname, String lastname, int roleid,
-			List<Movie> backlog, List<Movie> watched, List<Movie> reviewed, List<Review> reviews) {
+			List<Review> reviews) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -68,15 +53,7 @@ public class User {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.roleid = roleid;
-		this.backlog = backlog;
-		this.watched = watched;
-		this.reviewed = reviewed;
 		this.reviews = reviews;
-	}
-	
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -135,30 +112,6 @@ public class User {
 		this.roleid = roleid;
 	}
 
-	public List<Movie> getBacklog() {
-		return backlog;
-	}
-
-	public void setBacklog(List<Movie> backlog) {
-		this.backlog = backlog;
-	}
-
-	public List<Movie> getWatched() {
-		return watched;
-	}
-
-	public void setWatched(List<Movie> watched) {
-		this.watched = watched;
-	}
-
-	public List<Movie> getReviewed() {
-		return reviewed;
-	}
-
-	public void setReviewed(List<Movie> reviewed) {
-		this.reviewed = reviewed;
-	}
-
 	public List<Review> getReviews() {
 		return reviews;
 	}
@@ -170,6 +123,68 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", username=" + username + ", password=" + password
-				+ ", firstname=" + firstname + ", lastname=" + lastname + ", roleid=" + roleid + "]";
+				+ ", firstname=" + firstname + ", lastname=" + lastname + ", roleid=" + roleid + ", reviews=" + reviews
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
+		result = prime * result + roleid;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (reviews == null) {
+			if (other.reviews != null)
+				return false;
+		} else if (!reviews.equals(other.reviews))
+			return false;
+		if (roleid != other.roleid)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 }
