@@ -9,6 +9,10 @@ import { RouterModule } from '@angular/router';
 import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
 
+import { LandingPageComponent } from './components/landing/landing.component';
+import { MoviePosterComponent } from './components/movieposter/movieposter.component';
+import { MovieDetailsComponent } from './components/moviedetails/moviedetails.component';
+
 import { appRoutes } from './routes';
 
 @NgModule({
@@ -22,6 +26,9 @@ import { appRoutes } from './routes';
   declarations: [
     AppComponent,
     NavComponent,
+    LandingPageComponent,
+    MoviePosterComponent,
+    MovieDetailsComponent,
    ],
   providers: [
 
