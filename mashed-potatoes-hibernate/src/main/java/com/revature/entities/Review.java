@@ -2,8 +2,16 @@ package com.revature.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,30 +22,45 @@ public class Review implements Serializable {
 	private static final long serialVersionUID = 1778935356125898337L;
 	
 	@Id
-	private int user_id;
-	@Id
+	@Column(name = "review_id")
+	@SequenceGenerator(name = "review_id_seq", sequenceName = "review_id_seq")
+	@GeneratedValue(generator = "review_id_seq", strategy = GenerationType.AUTO)
+	private int id;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private User user;
 	private String movie_id;
 	
 	private String review;
+
+	public Review(int id, User user, String movie_id, String review) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.movie_id = movie_id;
+		this.review = review;
+	}
 
 	public Review() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Review(int user_id, String movie_id, String review) {
-		super();
-		this.user_id = user_id;
-		this.movie_id = movie_id;
-		this.review = review;
+
+	public int getId() {
+		return id;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getMovie_id() {
@@ -56,17 +79,19 @@ public class Review implements Serializable {
 		this.review = review;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public String toString() {
+		return "Review [id=" + id + ", user=" + user + ", movie_id=" + movie_id + ", review=" + review + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + id;
 		result = prime * result + ((movie_id == null) ? 0 : movie_id.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
-		result = prime * result + user_id;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -79,6 +104,8 @@ public class Review implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Review other = (Review) obj;
+		if (id != other.id)
+			return false;
 		if (movie_id == null) {
 			if (other.movie_id != null)
 				return false;
@@ -89,7 +116,10 @@ public class Review implements Serializable {
 				return false;
 		} else if (!review.equals(other.review))
 			return false;
-		if (user_id != other.user_id)
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

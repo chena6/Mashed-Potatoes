@@ -1,5 +1,8 @@
 package com.revature.launcher;
 
+import com.revature.daos.hibernate.CommentHibernate;
+import com.revature.daos.interfaces.CommentDAO;
+
 public class Launcher {
 	
 	//private static MovieDAO daoMovie = new MovieHibernate();
@@ -19,6 +22,9 @@ public class Launcher {
 		//System.out.println(json);
 		//
 		//ac.close();
+		
+		CommentDAO daoComment = new CommentHibernate();
+		
 	}
 	
 }

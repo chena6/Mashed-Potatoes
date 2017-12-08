@@ -1,2 +1,13 @@
-<h1 *ngIf="movie">{{ movie.title }}</h1>
+<div *ngIf="movie" class="moviebody">
+    <div>
+        <h2>{{movie.title}} <app-moviescore [score]="movie.score"></app-movie-score></h2>
+        <span class="text-top">
+            <img src={{movie.poster}} class="movieposter">
+            {{movie.plot}}
+        </span>
+    </div>
+    <p class="comment-content">
+        <app-commentarea [id]="movie.id"></app-commentarea>
+    </p>
+</div>
 

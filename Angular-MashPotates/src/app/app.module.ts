@@ -12,6 +12,8 @@ import {NavComponent} from './nav/nav.component';
 import { LandingPageComponent } from './components/landing/landing.component';
 import { MoviePosterComponent } from './components/movieposter/movieposter.component';
 import { MovieDetailsComponent } from './components/moviedetails/moviedetails.component';
+import { CommentAreaComponent } from './components/commentarea/commentarea.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 import { appRoutes } from './routes';
 
@@ -29,6 +31,8 @@ import { appRoutes } from './routes';
     LandingPageComponent,
     MoviePosterComponent,
     MovieDetailsComponent,
+    CommentAreaComponent,
+    CommentComponent,
    ],
   providers: [
 
