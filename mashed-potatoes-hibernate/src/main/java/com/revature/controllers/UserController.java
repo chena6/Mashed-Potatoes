@@ -15,7 +15,7 @@ public class UserController {
 	@PostMapping("login")
 	public User login(@RequestBody Credential cred) {
 		if("user".equals(cred.getUsername()) && "password".equals(cred.getPassword())) {
-            //us.getUserById();
+			//us.getUserById();
 			return new User();
         } else {
             return null;
