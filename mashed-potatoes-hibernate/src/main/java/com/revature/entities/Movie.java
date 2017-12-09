@@ -139,8 +139,8 @@ public class Movie {
 		this.poster = poster;
 	}
 	
-	public String getScore() {
-		return poster;
+	public double getScore() {
+		return score;
 	}
 
 	public void setScore(double score) {

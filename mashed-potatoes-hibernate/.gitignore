@@ -1,0 +1,9 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Ignore everything except the actual code files.
+/.settings
+/logs
+/target
+pom.xml
+.project
+.classpath

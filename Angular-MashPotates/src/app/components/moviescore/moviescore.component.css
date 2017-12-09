@@ -1,0 +1,10 @@
+span {
+    position: absolute;
+    right: 16px;
+    top: -5px;
+    width: 44px;
+    height: 44px;
+    border: 4px inset gray;
+    text-align: center;
+    padding: 2px;
+}
