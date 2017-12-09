@@ -1,5 +1,5 @@
 import { Component,  OnInit, Input } from '@angular/core';
-import { Movie } from '../../entities/Movie';
+import { Movie } from '../../../entities/Movie';
 
 @Component({
   selector: 'app-poster',

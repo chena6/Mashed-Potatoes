@@ -1,10 +1,14 @@
 package com.revature.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,8 +21,10 @@ public class Comment {
 	@SequenceGenerator(name = "comment_id_seq", sequenceName = "comment_id_seq")
 	@GeneratedValue(generator = "comment_id_seq", strategy = GenerationType.AUTO)
 	private int id;
-
-	private int user_id;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private User user;
 	private String movie_id;
 	private String comments;
 
@@ -27,10 +33,10 @@ public class Comment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(int id, int user_id, String movie_id, String comments) {
+	public Comment(int id, User user, String movie_id, String comments) {
 		super();
 		this.id = id;
-		this.user_id = user_id;
+		this.user = user;
 		this.movie_id = movie_id;
 		this.comments = comments;
 	}
@@ -43,12 +49,12 @@ public class Comment {
 		this.id = id;
 	}
 
-	public int getUser() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser(int user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getMovie_id() {
@@ -69,7 +75,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", user=" + user_id + ", movie_id=" + movie_id + ", comments=" + comments + "]";
+		return "Comment [id=" + id + ", user=" + user + ", movie_id=" + movie_id + ", comments=" + comments + "]";
 	}
 
 	@Override
@@ -79,7 +85,7 @@ public class Comment {
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((movie_id == null) ? 0 : movie_id.hashCode());
-		result = prime * result + user_id;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -104,7 +110,10 @@ public class Comment {
 				return false;
 		} else if (!movie_id.equals(other.movie_id))
 			return false;
-		if (user_id != other.user_id)
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

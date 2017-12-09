@@ -2,19 +2,15 @@ package com.revature.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -28,15 +24,13 @@ public class User {
 	
 	private String email;
 	private String username;
+	@JsonIgnore
 	private String password;
 
 	private String firstname;
 	private String lastname;
 	@Column(name = "role_id")
 	private int roleid;
-	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Review> reviews;
 	
 	public User() {
 		super();
@@ -53,7 +47,6 @@ public class User {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.roleid = roleid;
-		this.reviews = reviews;
 	}
 
 	public int getId() {
@@ -112,18 +105,10 @@ public class User {
 		this.roleid = roleid;
 	}
 
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", username=" + username + ", password=" + password
-				+ ", firstname=" + firstname + ", lastname=" + lastname + ", roleid=" + roleid + ", reviews=" + reviews
+				+ ", firstname=" + firstname + ", lastname=" + lastname + ", roleid=" + roleid
 				+ "]";
 	}
 
@@ -136,7 +121,6 @@ public class User {
 		result = prime * result + id;
 		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
 		result = prime * result + roleid;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -172,11 +156,6 @@ public class User {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
-			return false;
-		if (reviews == null) {
-			if (other.reviews != null)
-				return false;
-		} else if (!reviews.equals(other.reviews))
 			return false;
 		if (roleid != other.roleid)
 			return false;

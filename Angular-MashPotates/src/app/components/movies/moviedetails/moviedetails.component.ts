@@ -1,8 +1,8 @@
 import { Component,  OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from '../../entities/Movie';
+import { Movie } from '../../../entities/Movie';
 import { Http } from '@angular/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   templateUrl: './moviedetails.component.html',

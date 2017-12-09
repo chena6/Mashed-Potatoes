@@ -23,10 +23,16 @@ public class ReviewsController {
 	@Autowired
 	ReviewService rs;
 	
-	@GetMapping("{id}")
+	@GetMapping("movie={id}")
 	public Set<Review> getReviewsByMovieId(@PathVariable String id) {
-		log.info("In reviews controller, id given: " + id);
+		log.info("In reviews controller, movie id given: " + id);
 		return rs.getReviewsByMovieId(id);
+	}
+	
+	@GetMapping("user={id}")
+	public Set<Review> getReviewsByUserId(@PathVariable int id) {
+		log.info("In reviews controller, user id given: " + id);
+		return rs.getReviewsByUserId(id);
 	}
 	
 }

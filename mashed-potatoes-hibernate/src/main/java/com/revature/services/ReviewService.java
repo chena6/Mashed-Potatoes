@@ -21,4 +21,9 @@ public class ReviewService {
 		log.info("In reviews service, id: " + id);
 		return reviewRepo.getReviewsByMovieId(id);
 	}
+
+	public Set<Review> getReviewsByUserId(int id) {
+		log.info("In reviews service, id: " + id);
+		return reviewRepo.getReviewsByUserId(id);
+	}
 }

@@ -9,16 +9,20 @@ import { RouterModule } from '@angular/router';
 import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
 
+// All components that are tied specifically to movies.
 import { LandingPageComponent } from './components/landing/landing.component';
-import { MoviePosterComponent } from './components/movieposter/movieposter.component';
-import { MovieDetailsComponent } from './components/moviedetails/moviedetails.component';
-import { CommentAreaComponent } from './components/commentarea/commentarea.component';
-import { CommentComponent } from './components/comment/comment.component';
-import { MovieScoreComponent } from './components/moviescore/moviescore.component';
-import { ReviewAreaComponent } from './components/reviewarea/reviewarea.component';
-import { ReviewComponent } from './components/review/review.component';
-import { MovieSearchComponent } from './components/moviesearch/moviesearch.component';
-import { SearchResultsComponent } from './components/searchresults/searchresults.component';
+import { MoviePosterComponent } from './components/movies/movieposter/movieposter.component';
+import { MovieDetailsComponent } from './components/movies/moviedetails/moviedetails.component';
+import { MovieScoreComponent } from './components/movies/moviescore/moviescore.component';
+import { CommentAreaComponent } from './components/movies/commentarea/commentarea.component';
+import { ReviewAreaComponent } from './components/movies/reviewarea/reviewarea.component';
+import { MovieSearchComponent } from './components/movies/moviesearch/moviesearch.component';
+import { SearchResultsComponent } from './components/movies/searchresults/searchresults.component';
+
+// All components that users create data for the database with.
+import { CommentComponent } from './components/users/comment/comment.component';
+import { ReviewComponent } from './components/users/review/review.component';
+import { UserDetailsComponent } from './components/users/userdetails/userdetails.component';
 
 import { appRoutes } from './routes';
 
@@ -33,16 +37,19 @@ import { appRoutes } from './routes';
   declarations: [
     AppComponent,
     NavComponent,
+
     LandingPageComponent,
     MoviePosterComponent,
     MovieDetailsComponent,
-    CommentAreaComponent,
-    CommentComponent,
     MovieScoreComponent,
+    CommentAreaComponent,
     ReviewAreaComponent,
-    ReviewComponent,
     MovieSearchComponent,
     SearchResultsComponent,
+
+    CommentComponent,
+    ReviewComponent,
+    UserDetailsComponent,
    ],
   providers: [
 
