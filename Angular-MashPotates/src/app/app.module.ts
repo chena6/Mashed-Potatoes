@@ -14,6 +14,11 @@ import { MoviePosterComponent } from './components/movieposter/movieposter.compo
 import { MovieDetailsComponent } from './components/moviedetails/moviedetails.component';
 import { CommentAreaComponent } from './components/commentarea/commentarea.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { MovieScoreComponent } from './components/moviescore/moviescore.component';
+import { ReviewAreaComponent } from './components/reviewarea/reviewarea.component';
+import { ReviewComponent } from './components/review/review.component';
+import { MovieSearchComponent } from './components/moviesearch/moviesearch.component';
+import { SearchResultsComponent } from './components/searchresults/searchresults.component';
 
 import { appRoutes } from './routes';
 
@@ -33,6 +38,11 @@ import { appRoutes } from './routes';
     MovieDetailsComponent,
     CommentAreaComponent,
     CommentComponent,
+    MovieScoreComponent,
+    ReviewAreaComponent,
+    ReviewComponent,
+    MovieSearchComponent,
+    SearchResultsComponent,
    ],
   providers: [
 

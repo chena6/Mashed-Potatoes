@@ -1,0 +1,7 @@
+<h3>User Reviews <app-moviescore [score]="score" class="right-align"></app-moviescore></h3>
+<div *ngIf="reviews">
+    <app-review *ngFor="let rev of reviews" [review]="rev"></app-review>
+</div>
+<div *ngIf="!reviews">
+    Loading reviews for {{id}}
+</div>

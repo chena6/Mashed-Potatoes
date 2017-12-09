@@ -15,36 +15,38 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_reviews")
+@Table(name = "reviews")
 public class Review implements Serializable {
-	
+
 	// [Eclipse] Generated Field
 	private static final long serialVersionUID = 1778935356125898337L;
-	
+
 	@Id
 	@Column(name = "review_id")
 	@SequenceGenerator(name = "review_id_seq", sequenceName = "review_id_seq")
 	@GeneratedValue(generator = "review_id_seq", strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User user;
 	private String movie_id;
-	
-	private String review;
 
-	public Review(int id, User user, String movie_id, String review) {
+	private String review;
+	private int score;
+
+	public Review() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Review(int id, User user, String movie_id, String review, int score) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.movie_id = movie_id;
 		this.review = review;
-	}
-
-	public Review() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.score = score;
 	}
 
 	public int getId() {
@@ -79,9 +81,12 @@ public class Review implements Serializable {
 		this.review = review;
 	}
 
-	@Override
-	public String toString() {
-		return "Review [id=" + id + ", user=" + user + ", movie_id=" + movie_id + ", review=" + review + "]";
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	@Override
@@ -91,6 +96,7 @@ public class Review implements Serializable {
 		result = prime * result + id;
 		result = prime * result + ((movie_id == null) ? 0 : movie_id.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
+		result = prime * result + score;
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -116,6 +122,8 @@ public class Review implements Serializable {
 				return false;
 		} else if (!review.equals(other.review))
 			return false;
+		if (score != other.score)
+			return false;
 		if (user == null) {
 			if (other.user != null)
 				return false;
@@ -123,4 +131,11 @@ public class Review implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Review [id=" + id + ", user=" + user + ", movie_id=" + movie_id + ", review=" + review + ", score="
+				+ score + "]";
+	}
+
 }

@@ -7,17 +7,19 @@ import { Component,  OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  yup: string;
+  searchResults: Array<any>;
 
-  constructor() {
+  constructor() { }
+
+  receiveSearch($event) {
+    this.searchResults = $event;
   }
 
   ngOnInit()  {
-    // called after the constructor and called  after the first ngOnChanges()
-    this.yup = 'yes';
+
   }
 
   change() {
-    this.yup = 'no';
+
   }
 }

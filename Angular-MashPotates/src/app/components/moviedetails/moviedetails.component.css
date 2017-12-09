@@ -19,3 +19,8 @@
 .comment-content {
     clear: both;
 }
+
+.review-section {
+    float: right;
+    height: 100%;
+}

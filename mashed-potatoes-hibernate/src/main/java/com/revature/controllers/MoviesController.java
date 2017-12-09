@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,10 +37,10 @@ public class MoviesController {
 		return msvc.getMovieById(id);
 	}
 	
-	@GetMapping("search={query}")
-	public Set<Movie> searchMovies(@PathVariable String query) {
+	@PostMapping("search")
+	public Set<Movie> searchMovies(@RequestBody String query) {
 		
-		log.info("in search movies controller.");
+		log.info("in search movies controller. Query: " + query);
 		
 		Set<Movie> movies = msvc.getMoviesBySearch(query);
 		
