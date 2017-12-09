@@ -35,5 +35,17 @@ public class CommentHibernate implements CommentDAO {
 
 		return new HashSet<Comment>(crit.list());
 	}
+	
+	@Override
+	@Transactional
+	public Set<Comment> getCommentsByUserId(int id) {
+		
+		log.info("Attempting to get comments by user id.");
+		Session sess = sf.getCurrentSession();
 
+		Criteria crit = sess.createCriteria(Comment.class);
+		crit.add(Restrictions.eq("user.id", id));
+
+		return new HashSet<Comment>(crit.list());
+	}
 }

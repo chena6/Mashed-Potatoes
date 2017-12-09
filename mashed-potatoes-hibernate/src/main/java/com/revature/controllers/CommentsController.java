@@ -23,11 +23,17 @@ public class CommentsController {
 	@Autowired
 	CommentService csvc;
 	
-	@GetMapping("{id}")
+	@GetMapping("movie={id}")
 	public Set<Comment> getCommentsByMovieId(@PathVariable String id) {
 		
 		log.info("In getCommentsByMovieId: " + id);
-		
 		return csvc.getCommentsByMovieId(id);
+	}
+	
+	@GetMapping("user={id}")
+	public Set<Comment> getCommentsByUserId(@PathVariable int id) {
+		
+		log.info("In getCommentsByUserId: " + id);
+		return csvc.getCommentsByUserId(id);
 	}
 }

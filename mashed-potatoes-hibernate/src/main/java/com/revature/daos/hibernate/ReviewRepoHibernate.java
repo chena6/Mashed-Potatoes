@@ -34,4 +34,16 @@ Logger log = Logger.getRootLogger();
 
 		return new HashSet<Review>(crit.list());
 	}
+	
+	@Override
+	@Transactional
+	public Set<Review> getReviewsByUserId(int id) {
+		log.info("Attempting to get reviews by movie id.");
+		Session sess = sf.getCurrentSession();
+
+		Criteria crit = sess.createCriteria(Review.class);
+		crit.add(Restrictions.eq("user.id", id));
+
+		return new HashSet<Review>(crit.list());
+	}
 }

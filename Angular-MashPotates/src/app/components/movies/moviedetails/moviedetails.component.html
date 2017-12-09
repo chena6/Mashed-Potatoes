@@ -9,11 +9,11 @@
                     {{movie.plot}}
                 </span>
                 <p class="comment-content">
-                    <app-commentarea [id]="movie.id"></app-commentarea>
+                    <app-commentarea [movieId]="movie.id"></app-commentarea>
                 </p>
             </div>
             <div class="col-4 review-section">
-                <app-reviewarea [id]="movie.id" [score]="movie.score"></app-reviewarea>
+                <app-reviewarea [movieId]="movie.id" [score]="movie.score"></app-reviewarea>
             </div>
         </div>
     </div>

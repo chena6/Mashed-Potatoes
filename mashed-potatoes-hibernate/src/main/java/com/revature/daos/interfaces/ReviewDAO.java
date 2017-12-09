@@ -12,4 +12,10 @@ public interface ReviewDAO {
 	 */
 	Set<Review> getReviewsByMovieId(String id);
 	
+	/**
+	 * @param id
+	 * @return Returns a set of reviews from the given Movie ID.
+	 */
+	Set<Review> getReviewsByUserId(int id);
+	
 }

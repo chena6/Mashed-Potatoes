@@ -20,5 +20,9 @@ public class CommentService {
 	public Set<Comment> getCommentsByMovieId(String id) {
 		return commentRepo.getCommentsByMovieId(id);
 	}
+
+	public Set<Comment> getCommentsByUserId(int id) {
+		return commentRepo.getCommentsByUserId(id);
+	}
 	
 }
