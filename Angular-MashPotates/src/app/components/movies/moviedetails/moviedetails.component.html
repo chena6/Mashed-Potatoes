@@ -3,11 +3,15 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2>{{movie.title}}</h2>
-                <span class="text-top">
-                    <img src={{movie.poster}} class="movieposter">
-                    {{movie.plot}}
-                </span>
+                <div>
+                    <h2>{{movie.title}}</h2>
+                    <span class="text-top">
+                        <img src={{movie.poster}} class="movieposter">
+                        {{movie.plot}}
+                    </span>
+                    <app-newreview *ngIf="user" [movie]="movie" class="right"></app-newreview>
+                </div>
+                <app-newcomment *ngIf="user" [movie]="movie"></app-newcomment>
                 <p class="comment-content">
                     <app-commentarea [movieId]="movie.id"></app-commentarea>
                 </p>

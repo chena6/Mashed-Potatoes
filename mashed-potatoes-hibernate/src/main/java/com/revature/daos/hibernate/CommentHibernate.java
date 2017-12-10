@@ -48,4 +48,13 @@ public class CommentHibernate implements CommentDAO {
 
 		return new HashSet<Comment>(crit.list());
 	}
+
+	@Override
+	@Transactional
+	public void createComment(Comment comm) {
+		log.info("Attempting to persist comment comm...");
+		Session sess = sf.getCurrentSession();
+		
+		sess.persist(comm);
+	}
 }

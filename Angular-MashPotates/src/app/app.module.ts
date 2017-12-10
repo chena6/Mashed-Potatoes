@@ -23,6 +23,15 @@ import { SearchResultsComponent } from './components/movies/searchresults/search
 import { CommentComponent } from './components/users/comment/comment.component';
 import { ReviewComponent } from './components/users/review/review.component';
 import { UserDetailsComponent } from './components/users/userdetails/userdetails.component';
+import { NewCommentComponent } from './components/users/newcomment/newcomment.component';
+
+// Bootstrap-based components.
+import { LoginModalComponent } from './components/bootstrap/loginmodal/loginmodal.component';
+import { ReviewModalComponent } from './components/bootstrap/reviewmodal/reviewmodal.component';
+
+// Shared Services
+import { UserService } from './services/UserService.service';
+import { RefreshService } from './services/RefreshService.service';
 
 import { appRoutes } from './routes';
 
@@ -46,13 +55,18 @@ import { appRoutes } from './routes';
     ReviewAreaComponent,
     MovieSearchComponent,
     SearchResultsComponent,
+    NewCommentComponent,
 
     CommentComponent,
     ReviewComponent,
     UserDetailsComponent,
+    ReviewModalComponent,
+
+    LoginModalComponent,
    ],
   providers: [
-
+    UserService,
+    RefreshService,
    ],
   bootstrap: [AppComponent]
 })

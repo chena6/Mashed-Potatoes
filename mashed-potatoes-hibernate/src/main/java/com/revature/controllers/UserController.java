@@ -37,13 +37,22 @@ public class UserController {
 	@GetMapping("login")
 	public User getLogin(HttpSession session) {
 		
-		return null;
+		log.info("In get current login for session " + session.getId());
+		return (User) session.getAttribute("user");
+	}
+	
+	@GetMapping("logout")
+	public void logout(HttpSession session) {
+		log.info("In logout controller for session " + session.getId());
+		session.setAttribute("user", null);
 	}
 	
 	@PostMapping("login")
-	public User login(@RequestBody Credential cred) {
-            us.findByUsernameAndPassword(cred.getUsername(), cred.getPassword());
-            return null;
+	public User login(HttpSession session, @RequestBody Credential cred) {
+		log.info("In login controller: " + cred + " for session " + session.getId());
+		User newLogin = us.findByUsernameAndPassword(cred.getUsername(), cred.getPassword());
+		session.setAttribute("user", newLogin);
+		return newLogin;
 	}
 	
 	@PostMapping("register")

@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Comment;
+import com.revature.entities.Review;
 import com.revature.services.CommentService;
 
 @RestController
@@ -35,5 +38,11 @@ public class CommentsController {
 		
 		log.info("In getCommentsByUserId: " + id);
 		return csvc.getCommentsByUserId(id);
+	}
+	
+	@PostMapping
+	public void createComment(@RequestBody Comment comm) {
+		log.info("In new comment controller, :" + comm);
+		csvc.createNewReview(comm);
 	}
 }

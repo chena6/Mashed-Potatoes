@@ -18,8 +18,8 @@ public class UserService {
 		
 	}
 
-	public void findByUsernameAndPassword(String username, String password) {
-			ud.findByUsernameAndPassword(username, password);
+	public User findByUsernameAndPassword(String username, String password) {
+		return ud.findByUsernameAndPassword(username, password);
 	}
 	
 	public User getUserById(int id) {
