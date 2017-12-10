@@ -5,6 +5,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.ReviewDAO;
 import com.revature.entities.Review;
@@ -26,9 +27,11 @@ public class ReviewService {
 		log.info("In reviews service, id: " + id);
 		return reviewRepo.getReviewsByUserId(id);
 	}
-
+	
+	@Transactional
 	public void createNewReview(Review rev) {
 		log.info("In post reviews service: " + rev);
 		reviewRepo.createReview(rev);
+		reviewRepo.updateMovieAverage(rev);
 	}
 }

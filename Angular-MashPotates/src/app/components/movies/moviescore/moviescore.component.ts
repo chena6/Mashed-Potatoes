@@ -1,4 +1,4 @@
-import { Component,  OnInit, Input } from '@angular/core';
+import { Component,  OnInit, Input, OnChanges } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -6,15 +6,18 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './moviescore.component.html',
   styleUrls: ['./moviescore.component.css']
 })
-export class MovieScoreComponent implements OnInit {
+export class MovieScoreComponent implements OnInit, OnChanges {
 
   @Input()
   score: number;
   backgroundColor: string;
 
   ngOnInit() {
-    // Change background color of the score element based on the value of the score.
-    this.score = Math.trunc(this.score * 10) / 10;
+    this.ngOnChanges();
+  }
+
+  ngOnChanges() {
+    this.score = Math.round(this.score * 10) / 10;
     this.backgroundColor = `rgb(${Math.trunc(((10 - this.score) / 10) * 255)}, ${Math.trunc((this.score / 10) * 255)}, 0)`;
   }
 
