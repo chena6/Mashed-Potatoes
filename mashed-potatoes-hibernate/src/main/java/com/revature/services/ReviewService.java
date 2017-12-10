@@ -26,4 +26,9 @@ public class ReviewService {
 		log.info("In reviews service, id: " + id);
 		return reviewRepo.getReviewsByUserId(id);
 	}
+
+	public void createNewReview(Review rev) {
+		log.info("In post reviews service: " + rev);
+		reviewRepo.createReview(rev);
+	}
 }

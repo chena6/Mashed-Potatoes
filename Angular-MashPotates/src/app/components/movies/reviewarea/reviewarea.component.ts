@@ -1,6 +1,7 @@
 import { Component,  OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../../../environments/environment';
+import { RefreshService } from '../../../services/RefreshService.service';
 
 @Component({
   selector: 'app-reviewarea',
@@ -17,27 +18,31 @@ export class ReviewAreaComponent implements OnInit {
   userId: number;
   reviews: Array<any> = null;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private refresh: RefreshService) {}
 
   ngOnInit() {
 
-    if (this.movieId) {
-      this.http.get(environment.context + `/reviews/movie=${this.movieId}`)
-        .subscribe( (successResponse) => {
+    this.refresh.observer.subscribe(() => {
 
-      this.reviews = successResponse.json();
+      if (this.movieId) {
+        this.http.get(environment.context + `/reviews/movie=${this.movieId}`)
+          .subscribe( (successResponse) => {
 
-      }, (failResponse) => { });
-    }
+        this.reviews = successResponse.json();
 
-    if (this.userId) {
-      this.http.get(environment.context + `/reviews/user=${this.userId}`)
-        .subscribe( (successResponse) => {
+        }, (failResponse) => { });
+      }
 
-      this.reviews = successResponse.json();
+      if (this.userId) {
+        this.http.get(environment.context + `/reviews/user=${this.userId}`)
+          .subscribe( (successResponse) => {
 
-      }, (failResponse) => { });
-    }
+        this.reviews = successResponse.json();
+
+        }, (failResponse) => { });
+      }
+
+    });
 
   }
 

@@ -17,4 +17,9 @@ public interface CommentDAO {
 	 * @returns Returns a set of comments attached to the given Movie ID.
 	 */
 	public Set<Comment> getCommentsByUserId(int id);
+
+	/**
+	 * @param comm
+	 */
+	public void createComment(Comment comm);
 }

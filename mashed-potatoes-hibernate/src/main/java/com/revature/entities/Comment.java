@@ -22,7 +22,7 @@ public class Comment {
 	@GeneratedValue(generator = "comment_id_seq", strategy = GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
 	private String movie_id;

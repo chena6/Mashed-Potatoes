@@ -24,5 +24,10 @@ public class CommentService {
 	public Set<Comment> getCommentsByUserId(int id) {
 		return commentRepo.getCommentsByUserId(id);
 	}
+
+	public void createNewReview(Comment comm) {
+		log.info("In post comment service: " + comm);
+		commentRepo.createComment(comm);
+	}
 	
 }

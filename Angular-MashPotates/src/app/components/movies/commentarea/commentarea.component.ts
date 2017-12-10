@@ -1,6 +1,7 @@
 import { Component,  OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../../../environments/environment';
+import { RefreshService } from '../../../services/RefreshService.service';
 
 @Component({
   selector: 'app-commentarea',
@@ -15,27 +16,30 @@ export class CommentAreaComponent implements OnInit {
   userId: number;
   comments: Array<any> = null;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private refresh: RefreshService) {}
 
   ngOnInit() {
 
-    if (this.movieId) {
-      this.http.get(environment.context + `/comments/movie=${this.movieId}`)
-        .subscribe( (successResponse) => {
+    this.refresh.observer.subscribe(() => {
 
-      this.comments = successResponse.json();
+      if (this.movieId) {
+        this.http.get(environment.context + `/comments/movie=${this.movieId}`)
+          .subscribe( (successResponse) => {
 
-      }, (failResponse) => { });
-    }
+        this.comments = successResponse.json();
 
-    if (this.userId) {
-      this.http.get(environment.context + `/comments/user=${this.userId}`)
-        .subscribe( (successResponse) => {
+        }, (failResponse) => { });
+      }
 
-      this.comments = successResponse.json();
+      if (this.userId) {
+        this.http.get(environment.context + `/comments/user=${this.userId}`)
+          .subscribe( (successResponse) => {
 
-      }, (failResponse) => { });
-    }
+        this.comments = successResponse.json();
+
+        }, (failResponse) => { });
+      }
+    });
 
   }
 

@@ -22,5 +22,8 @@
 
 .review-section {
     float: right;
-    height: 100%;
+}
+
+.right {
+    float: right;
 }

@@ -1,0 +1,25 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title">Login</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-inline my-2 my-md-0" (ngSubmit)="onSubmit()">
+            <input [(ngModel)]="credentials.username" class="form-control mr-sm-2 block" placeholder="Username" name="username" required/><br>
+            <input [(ngModel)]="credentials.password" class="form-control mr-sm-2 block" placeholder="Password" name="password" type="password" required/><br>
+            <button class="btn btn-primary block">Submit</button>
+        </form>
+    </div>
+    <div class="modal-footer">
+      <!--<button type="button" class="btn btn-primary" routerLink-->
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>
+  
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)" *ngIf="!user">Login</button>
+<span *ngIf="user" class="navbar-brand"><a routerLink="{{profilehref}}" routerLinkActive="active">Welcome {{user.firstname}} {{user.lastname}}!</a></span>
+<button class="btn btn-lg btn-outline-danger" (click)="logout()" *ngIf="user">Logout</button>

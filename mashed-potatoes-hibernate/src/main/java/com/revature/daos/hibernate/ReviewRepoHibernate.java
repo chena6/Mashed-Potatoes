@@ -46,4 +46,13 @@ Logger log = Logger.getRootLogger();
 
 		return new HashSet<Review>(crit.list());
 	}
+	
+	@Override
+	@Transactional
+	public void createReview(Review rev) {
+		log.info("Attempting to persist review rev...");
+		Session sess = sf.getCurrentSession();
+		
+		sess.persist(rev);
+	}
 }
