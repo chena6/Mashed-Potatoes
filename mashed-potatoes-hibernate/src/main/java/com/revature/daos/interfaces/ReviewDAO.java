@@ -23,4 +23,9 @@ public interface ReviewDAO {
 	 */
 	void createReview(Review rev);
 	
+	/**
+	 * @param rev
+	 */
+	void updateMovieAverage(Review rev);
+	
 }
