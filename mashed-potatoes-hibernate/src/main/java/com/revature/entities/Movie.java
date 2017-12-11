@@ -39,6 +39,7 @@ public class Movie {
 	
 	private String plot;
 	private String poster;
+	private double score;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "movie_genre", 
@@ -137,6 +138,14 @@ public class Movie {
 	public void setPoster(String poster) {
 		this.poster = poster;
 	}
+	
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
 
 	public Set<Genre> getGenres() {
 		return genres;
@@ -153,7 +162,7 @@ public class Movie {
 	public void setActors(Set<Actor> actors) {
 		this.actors = actors;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -164,6 +173,9 @@ public class Movie {
 		result = prime * result + ((poster == null) ? 0 : poster.hashCode());
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result + ((runtime == null) ? 0 : runtime.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(score);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
@@ -208,6 +220,8 @@ public class Movie {
 				return false;
 		} else if (!runtime.equals(other.runtime))
 			return false;
+		if (Double.doubleToLongBits(score) != Double.doubleToLongBits(other.score))
+			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
@@ -219,12 +233,5 @@ public class Movie {
 		} else if (!year.equals(other.year))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Movie [id=" + id + ", title=" + title + ", year=" + year + ", rating=" + rating + ", runtime=" + runtime
-				+ ", director=" + director + ", plot=" + plot + ", poster=" + poster + ", genres=" + genres
-				+ ", actors=" + actors + "]";
 	}
 }

@@ -1,7 +1,6 @@
 package com.revature.entities;
 
-import java.io.Serializable;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,52 +9,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
-
-@NamedNativeQueries({
-	@NamedNativeQuery(
-	name = "callMovieAverageStoredProcedure",
-	query = "CALL AvgMovieScore(:movieId)"
-	)
-})
 @Entity
-@Table(name = "reviews")
-public class Review implements Serializable {
-
-	// [Eclipse] Generated Field
-	private static final long serialVersionUID = 1778935356125898337L;
+@Table(name = "comments")
+public class Comment {
 
 	@Id
-	@Column(name = "review_id")
-	@SequenceGenerator(name = "review_id_seq", sequenceName = "review_id_seq")
-	@GeneratedValue(generator = "review_id_seq", strategy = GenerationType.AUTO)
+	@Column(name = "comment_id")
+	@SequenceGenerator(name = "comment_id_seq", sequenceName = "comment_id_seq")
+	@GeneratedValue(generator = "comment_id_seq", strategy = GenerationType.AUTO)
 	private int id;
-
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
 	private String movie_id;
+	private String comments;
 
-	private String review;
-	private int score;
-
-	public Review() {
+	public Comment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Review(int id, User user, String movie_id, String review, int score) {
+	public Comment(int id, User user, String movie_id, String comments) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.movie_id = movie_id;
-		this.review = review;
-		this.score = score;
+		this.comments = comments;
 	}
 
 	public int getId() {
@@ -82,30 +65,26 @@ public class Review implements Serializable {
 		this.movie_id = movie_id;
 	}
 
-	public String getReview() {
-		return review;
+	public String getComments() {
+		return comments;
 	}
 
-	public void setReview(String review) {
-		this.review = review;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", user=" + user + ", movie_id=" + movie_id + ", comments=" + comments + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((movie_id == null) ? 0 : movie_id.hashCode());
-		result = prime * result + ((review == null) ? 0 : review.hashCode());
-		result = prime * result + score;
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -118,20 +97,18 @@ public class Review implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Review other = (Review) obj;
+		Comment other = (Comment) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
 		if (id != other.id)
 			return false;
 		if (movie_id == null) {
 			if (other.movie_id != null)
 				return false;
 		} else if (!movie_id.equals(other.movie_id))
-			return false;
-		if (review == null) {
-			if (other.review != null)
-				return false;
-		} else if (!review.equals(other.review))
-			return false;
-		if (score != other.score)
 			return false;
 		if (user == null) {
 			if (other.user != null)
@@ -140,11 +117,4 @@ public class Review implements Serializable {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Review [id=" + id + ", user=" + user + ", movie_id=" + movie_id + ", review=" + review + ", score="
-				+ score + "]";
-	}
-
 }

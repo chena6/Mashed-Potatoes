@@ -12,38 +12,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.entities.Movie;
-import com.revature.services.MovieService;
+import com.revature.entities.Review;
+import com.revature.services.ReviewService;
 
 @RestController
-@RequestMapping("movies")
+@RequestMapping("reviews")
 @CrossOrigin(origins = "http://localhost:4200")
-public class MoviesController {
+public class ReviewsController {
 	
 	Logger log = Logger.getRootLogger();
 	
 	@Autowired
-	MovieService msvc;
+	ReviewService rs;
 	
-	@GetMapping
-	public Set<Movie> printHelloMovies() {
-		return msvc.getMoviesBySearch("");
+	@GetMapping("movie={id}")
+	public Set<Review> getReviewsByMovieId(@PathVariable String id) {
+		log.info("In reviews controller, movie id given: " + id);
+		return rs.getReviewsByMovieId(id);
 	}
 	
-	@GetMapping("{id}")
-	public Movie movieById(@PathVariable String id) {
-		log.info("In get movie by id controller.");
-		
-		return msvc.getMovieById(id);
+	@GetMapping("user={id}")
+	public Set<Review> getReviewsByUserId(@PathVariable int id) {
+		log.info("In reviews controller, user id given: " + id);
+		return rs.getReviewsByUserId(id);
 	}
 	
-	@PostMapping("search")
-	public Set<Movie> searchMovies(@RequestBody String query) {
-		
-		log.info("in search movies controller. Query: " + query);
-		
-		Set<Movie> movies = msvc.getMoviesBySearch(query);
-		
-		return movies;
+	@PostMapping
+	public void createReview(@RequestBody Review rev) {
+		log.info("In new review controller, :" + rev);
+		rs.createNewReview(rev);
 	}
+	
 }

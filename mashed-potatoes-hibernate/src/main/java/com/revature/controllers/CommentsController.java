@@ -12,38 +12,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.entities.Movie;
-import com.revature.services.MovieService;
+import com.revature.entities.Comment;
+import com.revature.entities.Review;
+import com.revature.services.CommentService;
 
 @RestController
-@RequestMapping("movies")
+@RequestMapping("comments")
 @CrossOrigin(origins = "http://localhost:4200")
-public class MoviesController {
+public class CommentsController {
 	
 	Logger log = Logger.getRootLogger();
 	
 	@Autowired
-	MovieService msvc;
+	CommentService csvc;
 	
-	@GetMapping
-	public Set<Movie> printHelloMovies() {
-		return msvc.getMoviesBySearch("");
+	@GetMapping("movie={id}")
+	public Set<Comment> getCommentsByMovieId(@PathVariable String id) {
+		
+		log.info("In getCommentsByMovieId: " + id);
+		return csvc.getCommentsByMovieId(id);
 	}
 	
-	@GetMapping("{id}")
-	public Movie movieById(@PathVariable String id) {
-		log.info("In get movie by id controller.");
+	@GetMapping("user={id}")
+	public Set<Comment> getCommentsByUserId(@PathVariable int id) {
 		
-		return msvc.getMovieById(id);
+		log.info("In getCommentsByUserId: " + id);
+		return csvc.getCommentsByUserId(id);
 	}
 	
-	@PostMapping("search")
-	public Set<Movie> searchMovies(@RequestBody String query) {
-		
-		log.info("in search movies controller. Query: " + query);
-		
-		Set<Movie> movies = msvc.getMoviesBySearch(query);
-		
-		return movies;
+	@PostMapping
+	public void createComment(@RequestBody Comment comm) {
+		log.info("In new comment controller, :" + comm);
+		csvc.createNewReview(comm);
 	}
 }

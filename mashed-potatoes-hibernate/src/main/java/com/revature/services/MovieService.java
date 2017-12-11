@@ -21,14 +21,25 @@ public class MovieService {
 		
 		log.info("In get movies by search in MovieService controller.");
 		
-		query = query.toUpperCase();
+		Set<Movie> movies;
 		
-		Set<Movie> movies = movieRepo.getMoviesByTitle(query.toUpperCase());
-		movies.addAll(movieRepo.getMoviesByPlot(query));
-		movies.addAll(movieRepo.getMoviesByGenre(query));
-		//movies.addAll(movieRepo.getMoviesByRating(query)); // STRETCH GOAL MAYBE
-		movies.addAll(movieRepo.getMoviesByActor(query));
+		if("".equals(query) || null == query) {
+			movies = movieRepo.getAllMovies();
+		} else {
+			query = query.toUpperCase();
+			
+			movies = movieRepo.getMoviesByTitle(query);
+			movies.addAll(movieRepo.getMoviesByPlot(query));
+			movies.addAll(movieRepo.getMoviesByGenre(query));
+			movies.addAll(movieRepo.getMoviesByActor(query));
+		}
 		
 		return movies;
 	}
+
+	public Movie getMovieById(String id) {
+		return movieRepo.get(id);
+	}
+	
+	
 }
