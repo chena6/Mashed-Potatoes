@@ -63,7 +63,7 @@ public class MovieHibernate implements MovieDAO {
 
 	@Override
 	@Transactional
-	public Set<Movie> getMoviesByYear(String year) {
+	public Set<Movie> getMoviesByYear(int year) {
 		log.info("Attempting to get movies by year.");
 		Session sess = sf.getCurrentSession();
 
@@ -96,7 +96,7 @@ public class MovieHibernate implements MovieDAO {
 
 		Criteria crit = sess.createCriteria(Movie.class);
 		crit.createAlias("rating", "ratingj");
-		crit.add(Restrictions.eq("ratingj.rating", rating));
+		crit.add(Restrictions.ilike("ratingj.rating", rating, MatchMode.ANYWHERE));
 
 		return new HashSet<Movie>(crit.list());
 	}
@@ -116,6 +116,17 @@ public class MovieHibernate implements MovieDAO {
 				.add(Restrictions.ilike("actorsj.lastname", name, MatchMode.ANYWHERE))
 				);
 
+		return new HashSet<Movie>(crit.list());
+	}
+
+	@Override
+	@Transactional
+	public Set<Movie> getAllMovies() {
+		
+		Session sess = sf.getCurrentSession();
+		Criteria crit = sess.createCriteria(Movie.class);
+		crit.add(Restrictions.isNotNull("title"));
+		
 		return new HashSet<Movie>(crit.list());
 	}
 }

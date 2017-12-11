@@ -1,5 +1,6 @@
 package com.revature.daos.interfaces;
 
+import java.util.Collection;
 import java.util.Set;
 
 import com.revature.entities.Movie;
@@ -28,7 +29,7 @@ public interface MovieDAO {
 	 * @param year
 	 * @return Returns set of movies that came out on a given year.
 	 */
-	public Set<Movie> getMoviesByYear(String year);
+	public Set<Movie> getMoviesByYear(int year);
 
 	/**
 	 * @param genre
@@ -47,5 +48,10 @@ public interface MovieDAO {
 	 * @return Returns a set of movies that have a given actor's name, first or last.
 	 */
 	public Set<Movie> getMoviesByActor(String name);
+	
+	/**
+	 * @return Returns a set of all movies in the database.
+	 */
+	public Set<Movie> getAllMovies();
 
 }
