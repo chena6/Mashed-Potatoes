@@ -66,6 +66,21 @@ public class UserController {
 	public void register(@RequestBody User user) {
 		us.registerUser(user);
 	}
+
+	@PostMapping("ban={id}")
+	public User ban(@PathVariable int id) {
+		return us.banByUserId(id);
+	}
+	
+	@PostMapping("ruser={id}")
+	public User setRoleToUser(@PathVariable int id) {
+		return us.setRoleToUser(id);
+	}
+	
+	@PostMapping("radmin={id}")
+	public User setRoleToAdmin(@PathVariable int id) {
+		return us.setRoleToAdmin(id);
+	}
 	
 	@ExceptionHandler(CustomHttpException.class)
 	public ResponseEntity<String> customExceptionHandler(CustomHttpException e){
