@@ -1,0 +1,5 @@
+<app-nav></app-nav>
+
+<app-moviesearch (searchEvent)="receiveSearch($event)"></app-moviesearch>
+<app-poster *ngFor="let movie of searchResults" [movie]="movie" style="centered" (click)="clearSearch()"></app-poster>
+<router-outlet></router-outlet>
