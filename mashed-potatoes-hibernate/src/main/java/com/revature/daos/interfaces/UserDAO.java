@@ -22,5 +22,5 @@ public interface UserDAO {
 	public User setRoleToUser(int id);
 
 	public User setRoleToAdmin(int id);
-	
+
 }
