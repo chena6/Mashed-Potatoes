@@ -199,6 +199,16 @@ begin
 end;
 /
 
+create or replace PROCEDURE AvgMovieScore
+(inMovieId IN VARCHAR2)
+AS
+BEGIN
+    update movies
+        set score = round((select avg(score) from reviews where movie_id = inMovieId), 2)
+        where movie_id = inMovieId;
+END AvgMovieScore;
+/
+
 commit;
 
 
