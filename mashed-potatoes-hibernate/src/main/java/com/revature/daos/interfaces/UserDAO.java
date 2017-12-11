@@ -17,10 +17,4 @@ public interface UserDAO {
 	 */
 	public Set<User> getAllUsers();
 	
-	public User banByUserId(int id);
-
-	public User setRoleToUser(int id);
-
-	public User setRoleToAdmin(int id);
-	
 }

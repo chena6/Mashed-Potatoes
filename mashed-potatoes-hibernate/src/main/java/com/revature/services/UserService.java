@@ -14,9 +14,9 @@ public class UserService {
 	@Autowired 
 	UserDAO ud;
 	
-	
+	@Transactional
 	public void registerUser(User u) {
-		ud.registerUser(u);
+		
 	}
 
 	public User findByUsernameAndPassword(String username, String password) {
@@ -31,16 +31,5 @@ public class UserService {
 		return ud.getAllUsers();
 	}
 	
-	public User banByUserId(int id) {
-		return ud.banByUserId(id);
-	}
-
-	public User setRoleToUser(int id) {
-		return ud.setRoleToUser(id);
-	}
-
-	public User setRoleToAdmin(int id) {
-		return ud.setRoleToAdmin(id);
-	}
 	
 }
