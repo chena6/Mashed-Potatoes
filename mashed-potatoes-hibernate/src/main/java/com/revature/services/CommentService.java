@@ -21,8 +21,13 @@ public class CommentService {
 		return commentRepo.getCommentsByMovieId(id);
 	}
 
-	public Comment deleteCommentById(int id) {
-		return commentRepo.deleteCommentById(id);
+	public Set<Comment> getCommentsByUserId(int id) {
+		return commentRepo.getCommentsByUserId(id);
+	}
+
+	public void createNewReview(Comment comm) {
+		log.info("In post comment service: " + comm);
+		commentRepo.createComment(comm);
 	}
 	
 }

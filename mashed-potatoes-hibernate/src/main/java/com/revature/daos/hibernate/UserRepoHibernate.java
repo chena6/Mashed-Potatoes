@@ -1,5 +1,8 @@
 package com.revature.daos.hibernate;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,19 +15,21 @@ import com.revature.daos.interfaces.UserDAO;
 import com.revature.entities.User;
 
 @Repository
-public class UserHibernate implements UserDAO {
+public class UserRepoHibernate implements UserDAO {
 
 	@Autowired
 	private SessionFactory sf;
 
+	
+	@Transactional
 	@Override
 	public void registerUser(User u) {
 		Session session = sf.getCurrentSession();
 		session.persist(u);
 	}
 
-	@Override
 	@Transactional
+	@Override
 	public User findByUsernameAndPassword(String username, String password) {
 		Session session = sf.getCurrentSession();
 		Criteria cr = session.createCriteria(User.class);
@@ -35,6 +40,27 @@ public class UserHibernate implements UserDAO {
 		return u;
 
 	}
+
+	@Transactional
+	@Override
+	public User getUserById(int id) {
+		
+		Session session = sf.getCurrentSession();
+		User u = (User) session.get(User.class, id);
+		
+		return u;
+	}
+	
+	@Transactional
+	@Override
+	public Set<User> getAllUsers() {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.gt("id", 0));
+		
+		return new HashSet<User>(cr.list());
+	}
+
 
 	@Override
 	@Transactional
@@ -71,5 +97,4 @@ public class UserHibernate implements UserDAO {
 		session.persist(u);
 		return u;
 	}
-
 }

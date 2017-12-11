@@ -6,26 +6,25 @@
 
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item inactive">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item inactive" *ngIf="user && user.roleid >= 1">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Watchlist</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+      <li class="nav-item inactive" *ngIf="user && user.roleid >= 3">
+        <a class="nav-link" routerLink="/admins" routerLinkActive="active">Admin Dashboard</a>
       </li>
-      <li ngbDropdown class="d-inline-block">
+      <!-- <li ngbDropdown class="d-inline-block">
         <a class="nav-link dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button class="dropdown-item">Action - 1</button>
           <button class="dropdown-item">Another Action</button>
           <button class="dropdown-item">Something else is here</button>
         </div>
-      </li>
+      </li> -->
     </ul>
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Search">
-    </form>
+
+    <app-login-modal></app-login-modal>
   </div>
 </nav>
