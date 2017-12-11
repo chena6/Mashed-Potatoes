@@ -1,8 +1,17 @@
 <hr>
 <h3>Comments</h3>
+<hr>
+<div>
+    <app-newcomment *ngIf="movie && user && user.roleid >= 2" [movie]="movie"></app-newcomment>
+</div>
 <div *ngIf="comments">
     <app-comment *ngFor="let comm of comments" [comment]="comm"></app-comment>
 </div>
 <div *ngIf="!comments">
-    Loading comments for {{id}}
+    <div *ngIf="!movie">
+        Loading comments for {{movie.id}}
+    </div>
+    <div *ngIf="!userId">
+        Loading comments for {{userId}}
+    </div>
 </div>

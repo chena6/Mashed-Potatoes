@@ -1,5 +1,8 @@
 package com.revature.daos.hibernate;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,6 +47,16 @@ public class UserRepoHibernate implements UserDAO {
 		User u = (User) session.get(User.class, id);
 		
 		return u;
+	}
+	
+	@Transactional
+	@Override
+	public Set<User> getAllUsers() {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.gt("id", 0));
+		
+		return new HashSet<User>(cr.list());
 	}
 
 }

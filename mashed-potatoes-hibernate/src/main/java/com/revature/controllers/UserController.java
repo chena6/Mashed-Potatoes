@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -28,6 +30,11 @@ public class UserController {
 	
 	@Autowired
 	UserService us;
+	
+	@GetMapping("all")
+	public Set<User> getAllUsers() {
+		return us.getAllUsers();
+	}
 	
 	@GetMapping("{id}")
 	public User getUserById(@PathVariable int id) {

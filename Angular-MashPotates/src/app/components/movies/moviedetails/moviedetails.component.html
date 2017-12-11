@@ -7,13 +7,13 @@
                     <h2>{{movie.title}}</h2>
                     <span class="text-top">
                         <img src={{movie.poster}} class="movieposter">
+                        {{movie.rating}}
                         {{movie.plot}}
                     </span>
                     <app-newreview *ngIf="user" [movie]="movie" class="right"></app-newreview>
                 </div>
-                <app-newcomment *ngIf="user" [movie]="movie"></app-newcomment>
                 <p class="comment-content">
-                    <app-commentarea [movieId]="movie.id"></app-commentarea>
+                    <app-commentarea [movie]="movie"></app-commentarea>
                 </p>
             </div>
             <div class="col-4 review-section">

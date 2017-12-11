@@ -1,6 +1,8 @@
 import { Component,  OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../../../environments/environment';
+
+import { UserService } from '../../../services/UserService.service';
 import { RefreshService } from '../../../services/RefreshService.service';
 
 @Component({
@@ -11,22 +13,26 @@ import { RefreshService } from '../../../services/RefreshService.service';
 export class CommentAreaComponent implements OnInit {
 
   @Input()
-  movieId: string;
+  movie: any;
   @Input()
   userId: number;
   comments: Array<any> = null;
 
-  constructor(private http: Http, private refresh: RefreshService) {}
+  user: any;
+
+  constructor(private http: Http, private refresh: RefreshService, private userService: UserService) {}
 
   ngOnInit() {
 
+    this.userService.currentUser.subscribe((user) => { this.user = user; });
+
     this.refresh.observer.subscribe(() => {
 
-      if (this.movieId) {
-        this.http.get(environment.context + `/comments/movie=${this.movieId}`)
-          .subscribe( (successResponse) => {
+      if (this.movie) {
+        this.http.get(environment.context + `/comments/movie=${this.movie.id}`).subscribe( (successResponse) => {
 
-        this.comments = successResponse.json();
+          this.comments = successResponse.json();
+          this.comments.sort( (a, b) => (-a.id) - (-b.id));
 
         }, (failResponse) => { });
       }
