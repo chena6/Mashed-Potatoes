@@ -23,7 +23,7 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userService.currentUser.subscribe((user) => {this.user = user; console.log(user)});
+    this.userService.currentUser.subscribe((user) => { this.user = user; });
 
     this.refresh.observer.subscribe(() => {
       this.http.get(environment.context + `/movies/${this.id}`)

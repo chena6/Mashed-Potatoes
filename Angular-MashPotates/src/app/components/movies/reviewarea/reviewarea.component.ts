@@ -29,6 +29,7 @@ export class ReviewAreaComponent implements OnInit {
           .subscribe( (successResponse) => {
 
         this.reviews = successResponse.json();
+        this.reviews.sort( (a, b) => (-a.id) - (-b.id));
 
         }, (failResponse) => { });
       }

@@ -1,5 +1,7 @@
 package com.revature.daos.interfaces;
 
+import java.util.Set;
+
 import com.revature.entities.User;
 
 public interface UserDAO {
@@ -9,5 +11,10 @@ public interface UserDAO {
 	public User findByUsernameAndPassword(String username, String password);
 
 	public User getUserById(int id);
+	
+	/**
+	 * @return
+	 */
+	public Set<User> getAllUsers();
 	
 }

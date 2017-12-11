@@ -1,10 +1,11 @@
 package com.revature.services;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.daos.hibernate.UserRepoHibernate;
 import com.revature.daos.interfaces.UserDAO;
 import com.revature.entities.User;
 @Service
@@ -24,6 +25,10 @@ public class UserService {
 	
 	public User getUserById(int id) {
 		return ud.getUserById(id);
+	}
+
+	public Set<User> getAllUsers() {
+		return ud.getAllUsers();
 	}
 	
 	

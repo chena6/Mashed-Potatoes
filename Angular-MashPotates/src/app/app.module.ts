@@ -24,6 +24,7 @@ import { CommentComponent } from './components/users/comment/comment.component';
 import { ReviewComponent } from './components/users/review/review.component';
 import { UserDetailsComponent } from './components/users/userdetails/userdetails.component';
 import { NewCommentComponent } from './components/users/newcomment/newcomment.component';
+import { AdminPanelComponent } from './components/users/adminpanel/adminpanel.component';
 
 // Bootstrap-based components.
 import { LoginModalComponent } from './components/bootstrap/loginmodal/loginmodal.component';
@@ -61,6 +62,7 @@ import { appRoutes } from './routes';
     ReviewComponent,
     UserDetailsComponent,
     ReviewModalComponent,
+    AdminPanelComponent,
 
     LoginModalComponent,
    ],
