@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.entities.AuthObject;
 import com.revature.entities.Credential;
 import com.revature.entities.User;
 import com.revature.exceptions.CustomHttpException;
@@ -31,8 +32,8 @@ public class UserController {
 	@Autowired
 	UserService us;
 	
-	@GetMapping("all")
-	public Set<User> getAllUsers() {
+	@PostMapping("all")
+	public Object moderatorGetAllUsers(@RequestBody AuthObject obj) {
 		return us.getAllUsers();
 	}
 	
