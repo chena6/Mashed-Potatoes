@@ -26,6 +26,11 @@ public class CommentsController {
 	@Autowired
 	CommentService csvc;
 	
+	@GetMapping("all")
+	public Set<Comment> getAllComments() {
+		return csvc.getAllComments();
+	}
+	
 	@GetMapping("movie={id}")
 	public Set<Comment> getCommentsByMovieId(@PathVariable String id) {
 		
@@ -45,4 +50,9 @@ public class CommentsController {
 		log.info("In new comment controller, :" + comm);
 		csvc.createNewReview(comm);
 	}
+	
+	@PostMapping("delete={id}")
+	 	public Comment deleteCommentById(@PathVariable int id) {
+	 		return csvc.deleteCommentById(id);
+	 	}
 }

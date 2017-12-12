@@ -16,7 +16,7 @@ public class UserService {
 	
 	@Transactional
 	public void registerUser(User u) {
-		ud.registerUser(u);	
+		
 	}
 
 	public User findByUsernameAndPassword(String username, String password) {
@@ -42,5 +42,6 @@ public class UserService {
 	public User setRoleToAdmin(int id) {
 		return ud.setRoleToAdmin(id);
 	}
+	
 	
 }

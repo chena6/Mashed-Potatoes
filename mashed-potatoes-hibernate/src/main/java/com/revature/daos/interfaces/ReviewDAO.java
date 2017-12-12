@@ -27,5 +27,9 @@ public interface ReviewDAO {
 	 * @param rev
 	 */
 	void updateMovieAverage(Review rev);
+
+	void deleteReview(int id);
+
+	Set<Review> getAllReviews();
 	
 }

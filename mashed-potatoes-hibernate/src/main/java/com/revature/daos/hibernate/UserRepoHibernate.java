@@ -20,8 +20,6 @@ public class UserRepoHibernate implements UserDAO {
 	@Autowired
 	private SessionFactory sf;
 
-	
-	@Transactional
 	@Override
 	public void registerUser(User u) {
 		Session session = sf.getCurrentSession();
@@ -60,8 +58,7 @@ public class UserRepoHibernate implements UserDAO {
 		
 		return new HashSet<User>(cr.list());
 	}
-
-
+	
 	@Override
 	@Transactional
 	public User banByUserId(int id) {
@@ -70,7 +67,7 @@ public class UserRepoHibernate implements UserDAO {
 		cr.add(Restrictions.eq("id", id));
 		User u = (User) cr.uniqueResult();
 		u.setRoleid(1);
-		session.persist(u);
+		session.merge(u);
 		return u;
 	}
 
@@ -82,7 +79,7 @@ public class UserRepoHibernate implements UserDAO {
 		cr.add(Restrictions.eq("id", id));
 		User u = (User) cr.uniqueResult();
 		u.setRoleid(2);
-		session.persist(u);
+		session.merge(u);
 		return u;
 	}
 
@@ -94,7 +91,8 @@ public class UserRepoHibernate implements UserDAO {
 		cr.add(Restrictions.eq("id", id));
 		User u = (User) cr.uniqueResult();
 		u.setRoleid(3);
-		session.persist(u);
+		session.merge(u);
 		return u;
 	}
+
 }

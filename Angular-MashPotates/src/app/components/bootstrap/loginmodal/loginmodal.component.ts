@@ -68,7 +68,7 @@ export class LoginModalComponent implements OnInit {
 
   logout() {
     this.user = null;
-    this.userService.setUser(this.user);
+    this.userService.setUser(null);
     this.http.get(environment.context + '/users/logout').subscribe(() => {alert('logout successful'); }, () => {});
   }
 }

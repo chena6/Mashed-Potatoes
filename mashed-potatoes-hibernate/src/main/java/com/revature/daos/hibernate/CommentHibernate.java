@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.CommentDAO;
 import com.revature.entities.Comment;
+import com.revature.entities.Review;
 
 @Repository
 public class CommentHibernate implements CommentDAO {
@@ -56,5 +57,26 @@ public class CommentHibernate implements CommentDAO {
 		Session sess = sf.getCurrentSession();
 		
 		sess.persist(comm);
+	}
+	
+	@Override
+	@Transactional
+	public Comment deleteCommentById(int id) {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(Comment.class);
+		cr.add(Restrictions.eq("id", id));
+		Comment c = (Comment) cr.uniqueResult();
+		session.delete(c);
+		return null;
+	}
+
+	@Override
+	@Transactional
+	public Set<Comment> getAllComments() {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(Comment.class);
+		cr.add(Restrictions.gt("id", 0));
+		
+		return new HashSet<Comment>(cr.list());
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.ReviewDAO;
 import com.revature.entities.Review;
+import com.revature.entities.User;
 
 @Service
 public class ReviewService {
@@ -33,5 +34,14 @@ public class ReviewService {
 		log.info("In post reviews service: " + rev);
 		reviewRepo.createReview(rev);
 		reviewRepo.updateMovieAverage(rev);
+	}
+
+	public void deleteReview(int id) {
+	reviewRepo.deleteReview(id);
+		
+	}
+
+	public Set<Review> getAllReviews() {
+		return reviewRepo.getAllReviews();
 	}
 }

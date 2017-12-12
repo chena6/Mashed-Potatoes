@@ -67,12 +67,7 @@ public class UserController {
 		us.registerUser(user);
 	}
 	
-	@ExceptionHandler(CustomHttpException.class)
-	public ResponseEntity<String> customExceptionHandler(CustomHttpException e){
-		return new ResponseEntity<>(e.getMessage(), e.getStatus());
-	}
-  
-  	@PostMapping("ban={id}")
+	@PostMapping("ban={id}")
 	public User ban(@PathVariable int id) {
 		return us.banByUserId(id);
 	}
@@ -85,5 +80,10 @@ public class UserController {
 	@PostMapping("radmin={id}")
 	public User setRoleToAdmin(@PathVariable int id) {
 		return us.setRoleToAdmin(id);
+	}
+	
+	@ExceptionHandler(CustomHttpException.class)
+	public ResponseEntity<String> customExceptionHandler(CustomHttpException e){
+		return new ResponseEntity<>(e.getMessage(), e.getStatus());
 	}
 }
