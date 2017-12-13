@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { UIRouterModule } from '@uirouter/angular';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -35,6 +35,9 @@ import { UserService } from './services/UserService.service';
 import { RefreshService } from './services/RefreshService.service';
 
 import { appRoutes } from './routes';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { WatchedComponent } from './components/watched/watched.component';
+import { BacklogComponent } from './components/backlog/backlog.component';
 
 @NgModule({
   imports: [
@@ -63,8 +66,10 @@ import { appRoutes } from './routes';
     UserDetailsComponent,
     ReviewModalComponent,
     AdminPanelComponent,
-
     LoginModalComponent,
+    RegistrationComponent,
+    WatchedComponent,
+    BacklogComponent,
    ],
   providers: [
     UserService,
