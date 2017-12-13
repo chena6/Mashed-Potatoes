@@ -4,19 +4,22 @@
         <div class="row">
             <div class="col">
                 <div>
-                    <h2>{{movie.title}}</h2>
+                    <h2>{{movie.title}} </h2>
                     <span class="text-top">
                         <img src={{movie.poster}} class="movieposter">
                         {{movie.rating}}
                         {{movie.plot}}
                     </span>
-                    <app-newreview *ngIf="user" [movie]="movie" class="right"></app-newreview>
+                    <!-- <app-newreview *ngIf="user" [movie]="movie" class="right"></app-newreview> -->
                 </div>
                 <p class="comment-content">
                     <app-commentarea [movie]="movie"></app-commentarea>
                 </p>
             </div>
             <div class="col-4 review-section">
+                    <img *ngIf="movie.score >= 6" src= "assets/img/cutepotato.png">
+                    <img *ngIf="movie.score < 6" src= "assets/img/mashedp.png">
+                    <div><app-newreview *ngIf="user" [movie]="movie" class="right"></app-newreview></div>
                 <app-reviewarea [movieId]="movie.id" [score]="movie.score"></app-reviewarea>
             </div>
         </div>

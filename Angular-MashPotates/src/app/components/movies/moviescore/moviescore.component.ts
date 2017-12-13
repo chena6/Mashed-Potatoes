@@ -18,6 +18,7 @@ export class MovieScoreComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.score = Math.round(this.score * 10) / 10;
+    console.log(this.score);
     this.backgroundColor = `rgb(${Math.trunc(((10 - this.score) / 10) * 255)}, ${Math.trunc((this.score / 10) * 255)}, 0)`;
   }
 

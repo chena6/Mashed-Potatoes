@@ -17,6 +17,7 @@ export class ReviewModalComponent implements OnInit {
   closeResult: string;
   constructor(private modalService: NgbModal, private http: Http, private userService: UserService, private refresh: RefreshService) {}
   user: any = null;
+  modalReference: any;
 
   @Input()
   movie: any;
@@ -37,7 +38,8 @@ export class ReviewModalComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modalReference = this.modalService.open(content);
+    this.modalReference.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -55,9 +57,19 @@ export class ReviewModalComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.post(environment.context + '/reviews', this.review).subscribe(
+
+    const body = {
+      cred: {
+        username: this.user.username,
+        password: this.user.password
+      },
+      review: this.review
+    }
+
+    this.http.post(environment.context + '/reviews', body).subscribe(
         (successResponse) => {
           this.refresh.notify();
+          this.modalReference.close();
           this.review = {
             id: 0,
             user: this.user,

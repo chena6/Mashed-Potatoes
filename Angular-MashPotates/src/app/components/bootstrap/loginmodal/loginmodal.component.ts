@@ -17,6 +17,7 @@ export class LoginModalComponent implements OnInit {
   closeResult: string;
   constructor(private router: Router, private modalService: NgbModal, private http: Http, private userService: UserService) {}
   user: any = null;
+  modalReference: any;
 
   profilehref: string;
 
@@ -38,7 +39,8 @@ export class LoginModalComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modalReference = this.modalService.open(content);
+    this.modalReference.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -65,6 +67,7 @@ export class LoginModalComponent implements OnInit {
           this.profilehref = `/users/${this.user.id}`;
           this.userService.setUser(this.user);
           this.modalService.open(null).close();
+          this.modalReference.close();
     },  (failResponse) => {});
   }
 
