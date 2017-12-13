@@ -82,7 +82,7 @@ public class ReviewRepoHibernate implements ReviewDAO {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void deleteReview(int id) {
 		Session session = sf.getCurrentSession();
 		Criteria cr = session.createCriteria(Review.class);

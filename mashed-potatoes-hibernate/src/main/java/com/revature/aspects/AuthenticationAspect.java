@@ -34,8 +34,6 @@ public class AuthenticationAspect {
 		AuthObject input = (AuthObject) pjp.getArgs()[0];
 		log.info(input);
 		
-		log.info(pjp.getArgs()[1]);
-		
 		User authUser = getUserFromAuthObject(input);
 		
 		log.info(authUser.getId());
@@ -54,7 +52,7 @@ public class AuthenticationAspect {
 			CustomHttpException e = new InvalidCredentialException("Insufficient privileges to use this command.");
 			returnObject = new ResponseEntity<>(e.getMessage(), e.getStatus());
 			
-		} else if (personal && (Integer) pjp.getArgs()[1] != authUser.getId()) {
+		} else if (personal && (pjp.getArgs().length < 2 || (Integer) pjp.getArgs()[1] != authUser.getId())) {
 		
 			CustomHttpException e = new InvalidCredentialException("Insufficient privileges to use this command.");
 			returnObject = new ResponseEntity<>(e.getMessage(), e.getStatus());
@@ -64,9 +62,11 @@ public class AuthenticationAspect {
 			try {
 				returnObject = pjp.proceed();
 			} catch (Throwable t) {
+				
 				log.warn("Auth AOP: Method " + pjp.getSignature() + " threw " + t.getMessage());
-				log.warn(Arrays.toString(t.getStackTrace()));
+				t.printStackTrace();
 				returnObject = null;
+				
 			}
 		}
 		
