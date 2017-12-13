@@ -4,6 +4,5 @@
 /.settings
 /logs
 /target
-pom.xml
 .project
 .classpath
