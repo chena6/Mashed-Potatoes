@@ -45,15 +45,17 @@ public class ReviewsController {
 	}
 	
 	@PostMapping
-	public void socialCreateReview(@RequestBody AuthObject auth) {
+	public Object socialCreateReview(@RequestBody AuthObject auth) {
 		Review rev = auth.getReview();
 		log.info("In new review controller, :" + rev);
 		rs.createNewReview(rev);
+		return null;
 	}
 	
 	@PostMapping("delete")
-	public void adminDeleteReview (@RequestBody AuthObject auth) {
+	public Object adminDeleteReview (@RequestBody AuthObject auth) {
 		Integer id = (Integer) auth.getData();
 		rs.deleteReview(id);
+		return null;
 	}
 }

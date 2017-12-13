@@ -34,10 +34,15 @@ public class AuthenticationAspect {
 		AuthObject input = (AuthObject) pjp.getArgs()[0];
 		log.info(input);
 		
+		log.info(pjp.getArgs()[1]);
+		
 		User authUser = getUserFromAuthObject(input);
+		
+		log.info(authUser.getId());
 		
 		Object returnObject = null;
 		int minLevel = getAuthorityLevel(pjp.getSignature().getName());
+		boolean personal = userPersonalAuthority(pjp.getSignature().getName());
 		
 		if(authUser == null) { // 401 Unauthorized.
 			
@@ -49,7 +54,13 @@ public class AuthenticationAspect {
 			CustomHttpException e = new InvalidCredentialException("Insufficient privileges to use this command.");
 			returnObject = new ResponseEntity<>(e.getMessage(), e.getStatus());
 			
+		} else if (personal && (Integer) pjp.getArgs()[1] != authUser.getId()) {
+		
+			CustomHttpException e = new InvalidCredentialException("Insufficient privileges to use this command.");
+			returnObject = new ResponseEntity<>(e.getMessage(), e.getStatus());
+			
 		} else {
+			
 			try {
 				returnObject = pjp.proceed();
 			} catch (Throwable t) {
@@ -100,6 +111,13 @@ public class AuthenticationAspect {
 		return level;
 	}
 	
-	@Pointcut("execution(* com.revature.*..*(com.revature.entities.AuthObject))")
+	public boolean userPersonalAuthority(String method) {
+		
+		method = method.toLowerCase();
+		return method.contains("personal");
+		
+	}
+	
+	@Pointcut("execution(* com.revature.*..*(com.revature.entities.AuthObject,..))")
 	public void authMethods() { }
 }

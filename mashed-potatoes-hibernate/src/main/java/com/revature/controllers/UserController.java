@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.AuthObject;
 import com.revature.entities.Credential;
+import com.revature.entities.Movie;
 import com.revature.entities.User;
 import com.revature.exceptions.CustomHttpException;
 import com.revature.services.UserService;
@@ -82,16 +83,20 @@ public class UserController {
 		return us.setRoleToAdmin(id);
 	}
 	
-	public void addMovieToWatched(int id, String mid){
+	@PostMapping("watched={id}-{mid}")
+	public Object personalAddMovieToWatched(@RequestBody AuthObject auth, @PathVariable int id, @PathVariable String mid) {
 		us.addMovieToWatched(id, mid);
+		return null;
 	}
 	
 	public Set<Movie> getWatched(int id){
 		return us.getWatched(id);
 	}
 	
-	public void addMovieToBacklog(int id, String mid) {
-		us.addMovieToBacklog(id,mid); 
+	@PostMapping("backlog={id}-{mid}")
+	public Object personalAddMovieToBacklog(@RequestBody AuthObject auth, @PathVariable int id, @PathVariable String mid) {
+		us.addMovieToBacklog(id,mid);
+		return null;
 	}
 	
 	public Set<Movie> getBacklog(int id){
