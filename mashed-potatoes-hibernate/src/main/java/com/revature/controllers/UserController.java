@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.entities.AuthObject;
 import com.revature.entities.Credential;
 import com.revature.entities.User;
 import com.revature.exceptions.CustomHttpException;
@@ -45,13 +46,12 @@ public class UserController {
 	public User getLogin(HttpSession session) {
 		
 		log.info("In get current login for session " + session.getId());
-		return (User) session.getAttribute("user");
+		return null;
 	}
 	
 	@GetMapping("logout")
 	public void logout(HttpSession session) {
 		log.info("In logout controller for session " + session.getId());
-		session.setAttribute("user", null);
 	}
 	
 	@PostMapping("login")
@@ -68,17 +68,17 @@ public class UserController {
 	}
 	
 	@PostMapping("ban={id}")
-	public User ban(@PathVariable int id) {
+	public User adminBan(@RequestBody AuthObject auth, @PathVariable int id) {
 		return us.banByUserId(id);
 	}
 	
 	@PostMapping("ruser={id}")
-	public User setRoleToUser(@PathVariable int id) {
+	public User adminSetRoleToUser(@RequestBody AuthObject auth, @PathVariable int id) {
 		return us.setRoleToUser(id);
 	}
 	
 	@PostMapping("radmin={id}")
-	public User setRoleToAdmin(@PathVariable int id) {
+	public User adminSetRoleToAdmin(@RequestBody AuthObject auth, @PathVariable int id) {
 		return us.setRoleToAdmin(id);
 	}
 	

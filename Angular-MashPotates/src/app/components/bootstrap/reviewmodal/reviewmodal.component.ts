@@ -65,6 +65,6 @@ export class ReviewModalComponent implements OnInit {
             review: '',
             score: 10
           };
-        },  (failResponse) => { alert('Review submission failed.'); });
+        },  (failResponse) => { });
   }
 }

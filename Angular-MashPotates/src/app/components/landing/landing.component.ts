@@ -44,11 +44,7 @@ export class LandingPageComponent implements OnInit {
 
       this.movies = successResponse.json();
 
-    }, (failResponse) => {
-
-      alert('failed');
-
-    });
+    }, (failResponse) => {});
 
   }
 }

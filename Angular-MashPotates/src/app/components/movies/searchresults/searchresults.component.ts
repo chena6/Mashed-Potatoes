@@ -1,4 +1,5 @@
 import { Component,  OnInit } from '@angular/core';
+import { SearchService } from '../../../services/SearchService.service';
 
 @Component({
   templateUrl: './searchresults.component.html',
@@ -6,5 +7,11 @@ import { Component,  OnInit } from '@angular/core';
 })
 export class SearchResultsComponent implements OnInit {
 
-  ngOnInit() {}
+  searchResults: Array<any>;
+
+  constructor(private search: SearchService) {}
+
+  ngOnInit() {
+    this.search.searchResults.subscribe( (results) => {this.searchResults = results; });
+  }
 }

@@ -25,11 +25,17 @@ export class ReviewComponent implements OnInit {
   }
 
   deleteReview(idnum: number) {
-    console.log(idnum);
-    this.http.post(environment.context + '/reviews/delete=' + idnum, '').subscribe(
+    const body = {
+      cred: {
+        username: this.user.username,
+        password: this.user.password
+      },
+      data: idnum
+    };
+
+    this.http.post(environment.context + '/reviews/delete', body).subscribe(
       (successResponse) => {
         this.refresh.notify();
       }, (failResponse) => { });
   }
-
 }

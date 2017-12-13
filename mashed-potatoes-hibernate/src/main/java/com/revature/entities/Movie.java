@@ -11,11 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+@NamedNativeQueries({
+	@NamedNativeQuery(
+	name = "selectTop20",
+	query = "select * from (select * from movies order by score asc) where rownum <= 20",
+	resultClass = Movie.class
+	)
+})
 @Entity
 @Table(name = "movies")
 public class Movie {

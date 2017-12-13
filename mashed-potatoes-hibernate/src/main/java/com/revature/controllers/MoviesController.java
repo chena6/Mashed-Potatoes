@@ -26,8 +26,8 @@ public class MoviesController {
 	MovieService msvc;
 	
 	@GetMapping
-	public Set<Movie> printHelloMovies() {
-		return msvc.getMoviesBySearch("");
+	public Set<Movie> getTopRated() {
+		return msvc.getTopRatedMovies();
 	}
 	
 	@GetMapping("{id}")

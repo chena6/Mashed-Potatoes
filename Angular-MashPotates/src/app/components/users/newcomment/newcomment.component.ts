@@ -41,10 +41,19 @@ export class NewCommentComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.post(environment.context + '/comments', this.comment).subscribe(
+
+    const body = {
+      cred: {
+        username: this.user.username,
+        password: this.user.password
+      },
+      comment: this.comment
+    };
+
+    this.http.post(environment.context + '/comments', body).subscribe(
         (successResponse) => {
           this.refresh.notify();
           this.comment.comments = '';
-        },  (failResponse) => { alert('Review submission failed.'); });
+        },  (failResponse) => { });
   }
 }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.entities.AuthObject;
 import com.revature.entities.Comment;
-import com.revature.entities.Review;
 import com.revature.services.CommentService;
 
 @RestController
@@ -46,13 +46,15 @@ public class CommentsController {
 	}
 	
 	@PostMapping
-	public void createComment(@RequestBody Comment comm) {
+	public void socialCreateComment(@RequestBody AuthObject auth) {
+		Comment comm = auth.getComment();
 		log.info("In new comment controller, :" + comm);
 		csvc.createNewReview(comm);
 	}
 	
-	@PostMapping("delete={id}")
-	 	public Comment deleteCommentById(@PathVariable int id) {
+	@PostMapping("delete")
+	 	public Comment moderatorDeleteCommentById(@RequestBody AuthObject auth) {
+			Integer id = (Integer) auth.getData();
 	 		return csvc.deleteCommentById(id);
 	 	}
 }

@@ -37,7 +37,9 @@ public class ReviewService {
 	}
 
 	public void deleteReview(int id) {
-	reviewRepo.deleteReview(id);
+		Review reviewToDelete = reviewRepo.getReviewId(id);
+		reviewRepo.deleteReview(id);
+		reviewRepo.updateMovieAverage(reviewToDelete);
 		
 	}
 

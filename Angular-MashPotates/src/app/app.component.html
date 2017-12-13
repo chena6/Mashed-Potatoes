@@ -3,6 +3,5 @@
 <div style="text-align:center">
     <img src="/assets/img/smallmplogo2.png">
 </div>
-<app-moviesearch (searchEvent)="receiveSearch($event)"></app-moviesearch>
-<app-poster *ngFor="let movie of searchResults" [movie]="movie" style="centered" (click)="clearSearch()"></app-poster>
+<app-moviesearch></app-moviesearch>
 <router-outlet></router-outlet>

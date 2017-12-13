@@ -40,6 +40,10 @@ public class MovieService {
 	public Movie getMovieById(String id) {
 		return movieRepo.get(id);
 	}
+
+	public Set<Movie> getTopRatedMovies() {
+		return movieRepo.getTopRatedMovies();
+	}
 	
 	
 }
