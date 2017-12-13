@@ -1,8 +1,5 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="adminpanel.component.css"> -->
-
-<h3>Users:</h3>
-<table class="table">
+<h3 *ngIf="user">Users:</h3>
+<table *ngIf="user" class="table">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -19,21 +16,16 @@
             <td>{{user.username}}</td>
             <td>{{user.email}}</td>
             <td>{{user.firstname}} {{user.lastname}}</td>
-            <td>{{user.roleid}}</td>
+            <td>{{roles[user.roleid-1]}}</td>
             <td>
-
-                    <div class="row">
-                            <div class="col">
-                              <div ngbDropdown class="d-inline-block">
-                                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Action</button>
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                  <button class="dropdown-item" (click)="onBan(user.id)">Ban User</button>
-                                  <button class="dropdown-item" (click)="setRoleToUser(user.id)">Set Role: User</button>
-                                  <button class="dropdown-item" (click)="setRoleToAdmin(user.id)">Set Role: Admin</button>
-                                </div>
-                              </div>
-                            </div>
-                            </div>
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Action</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="dropdown-item" (click)="onBan(user.id)">Ban User</button>
+                        <button class="dropdown-item" (click)="setRoleToUser(user.id)">Set Role: User</button>
+                        <button class="dropdown-item" (click)="setRoleToAdmin(user.id)">Set Role: Admin</button>
+                    </div>
+                </div>
             </td>
         </tr>
     </tbody>

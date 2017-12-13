@@ -25,11 +25,18 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment(idnum: number) {
-      console.log(idnum);
-      this.http.post(environment.context + '/comments/delete=' + idnum, "").subscribe(
+
+      const body = {
+        cred: {
+          username: this.user.username,
+          password: this.user.password
+        },
+        data: idnum
+      };
+
+      this.http.post(environment.context + '/comments/delete', body).subscribe(
           (successResponse) => {
             this.refresh.notify();
       },  (failResponse) => {});
   }
-
 }

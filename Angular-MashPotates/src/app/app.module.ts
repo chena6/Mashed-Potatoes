@@ -33,6 +33,7 @@ import { ReviewModalComponent } from './components/bootstrap/reviewmodal/reviewm
 // Shared Services
 import { UserService } from './services/UserService.service';
 import { RefreshService } from './services/RefreshService.service';
+import { SearchService } from './services/SearchService.service';
 
 import { appRoutes } from './routes';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -74,6 +75,7 @@ import { BacklogComponent } from './components/backlog/backlog.component';
   providers: [
     UserService,
     RefreshService,
+    SearchService,
    ],
   bootstrap: [AppComponent]
 })

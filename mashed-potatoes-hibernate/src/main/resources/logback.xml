@@ -7,9 +7,9 @@
 		</encoder>
 	</appender>
 	<!-- Set the levels here -->
-	<logger name="org.springframework" level="INFO" />
-	<logger name="org.hibernate" level="INFO" />
-	<root level="INFO">
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.hibernate" level="ERROR" />
+	<root level="ERROR">
 		<appender-ref ref="STDOUT" />
 	</root>
 

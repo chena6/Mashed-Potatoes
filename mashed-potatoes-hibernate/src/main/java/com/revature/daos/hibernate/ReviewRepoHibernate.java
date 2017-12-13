@@ -91,4 +91,9 @@ public class ReviewRepoHibernate implements ReviewDAO {
 		session.delete(r);
 		
 	}
+
+	@Override
+	public Review getReviewId(int id) {
+		return (Review) sf.getCurrentSession().get(Review.class, id);
+	}
 }

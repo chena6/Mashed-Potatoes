@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { UserService } from '../../../services/UserService.service';
 import { Credentials } from '../../../entities/Credentials';
@@ -14,7 +15,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class LoginModalComponent implements OnInit {
 
   closeResult: string;
-  constructor(private modalService: NgbModal, private http: Http, private userService: UserService) {}
+  constructor(private router: Router, private modalService: NgbModal, private http: Http, private userService: UserService) {}
   user: any = null;
 
   profilehref: string;
@@ -58,6 +59,7 @@ export class LoginModalComponent implements OnInit {
     this.http.post(environment.context + '/users/login', this.credentials).subscribe(
         (successResponse) => {
           this.user = successResponse.json();
+          this.user.password = this.credentials.password;
           this.credentials.username = '';
           this.credentials.password = '';
           this.profilehref = `/users/${this.user.id}`;
@@ -69,7 +71,7 @@ export class LoginModalComponent implements OnInit {
   logout() {
     this.user = null;
     this.userService.setUser(this.user);
-    this.http.get(environment.context + '/users/logout').subscribe(() => {alert('logout successful'); }, () => {});
+    this.http.get(environment.context + '/users/logout').subscribe(() => { this.router.navigate(['/home']); }, () => {});
   }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.entities.AuthObject;
 import com.revature.entities.Review;
 import com.revature.entities.User;
 import com.revature.services.ReviewService;
@@ -44,14 +45,15 @@ public class ReviewsController {
 	}
 	
 	@PostMapping
-	public void createReview(@RequestBody Review rev) {
+	public void socialCreateReview(@RequestBody AuthObject auth) {
+		Review rev = auth.getReview();
 		log.info("In new review controller, :" + rev);
 		rs.createNewReview(rev);
 	}
 	
-	@PostMapping("delete={id}")
-	public void deleteReview (@PathVariable int id) {
+	@PostMapping("delete")
+	public void adminDeleteReview (@RequestBody AuthObject auth) {
+		Integer id = (Integer) auth.getData();
 		rs.deleteReview(id);
 	}
-	
 }

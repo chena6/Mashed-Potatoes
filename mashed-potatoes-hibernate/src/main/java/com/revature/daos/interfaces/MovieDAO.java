@@ -1,6 +1,5 @@
 package com.revature.daos.interfaces;
 
-import java.util.Collection;
 import java.util.Set;
 
 import com.revature.entities.Movie;
@@ -53,5 +52,10 @@ public interface MovieDAO {
 	 * @return Returns a set of all movies in the database.
 	 */
 	public Set<Movie> getAllMovies();
+	
+	/**
+	 * @return Returns first 20 movies by rating.
+	 */
+	public Set<Movie> getTopRatedMovies();
 
 }

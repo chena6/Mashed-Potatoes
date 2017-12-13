@@ -32,4 +32,6 @@ public interface ReviewDAO {
 
 	Set<Review> getAllReviews();
 	
+	Review getReviewId(int id);
+	
 }
