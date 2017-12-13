@@ -9,7 +9,7 @@
     <div class="modal-body">
         <form class="form-block my-2 my-md-0" (ngSubmit)="onSubmit()">
             <label for="score">Your Score:</label>
-            <input [(ngModel)]="review.score" class="form-control mr-sm-2" placeholder="10" name="score" type="number" max="10" min="0" required/>
+            <input [(ngModel)]="review.score" class="form-control mr-sm-2" placeholder="10" name="score" type="number" required/>
             <label for="review">Review:</label>
             <textarea [(ngModel)]="review.review" class="form-control mr-sm-2" placeholder="Thoughts..." name="review" type="textarea" required></textarea>
             <button class="btn btn-primary block">Submit</button>
