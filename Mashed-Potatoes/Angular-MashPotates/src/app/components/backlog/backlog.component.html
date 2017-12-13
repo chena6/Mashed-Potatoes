@@ -1,0 +1,9 @@
+<div *ngIf="user">
+  <ngb-accordion *ngFor="let movie of movies" [closeOthers]="true">
+    <ngb-panel id="static-1" title="{{movie.title}}">
+      <ng-template ngbPanelContent>
+
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>

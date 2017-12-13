@@ -1,0 +1,29 @@
+.moviebody {
+    padding: 6px;
+    margin: 6px;
+}
+
+.movieposter {
+    height: 300px;
+    width: 200px;
+    margin: 6px;
+    border: 1px solid black;
+    float: left;
+    display: block;
+}
+
+.text-top {
+    vertical-align: top;
+}
+
+.comment-content {
+    clear: both;
+}
+
+.review-section {
+    float: right;
+}
+
+.right {
+    float: right;
+}
