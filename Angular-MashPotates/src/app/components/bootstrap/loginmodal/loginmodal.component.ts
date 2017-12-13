@@ -31,7 +31,7 @@ export class LoginModalComponent implements OnInit {
           if (successResponse.text()) {
             this.user = successResponse.json();
           }
-    },  (failResponse) => {});
+    },  (failResponse) => { });
 
     this.userService.currentUser.subscribe(user => this.user = user);
   }
@@ -71,4 +71,5 @@ export class LoginModalComponent implements OnInit {
     this.userService.setUser(this.user);
     this.http.get(environment.context + '/users/logout').subscribe(() => {alert('logout successful'); }, () => {});
   }
+
 }

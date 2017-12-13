@@ -30,4 +30,11 @@ public class CommentService {
 		commentRepo.createComment(comm);
 	}
 	
+	public Comment deleteCommentById(int id) {
+		return commentRepo.deleteCommentById(id);
+	}
+
+	public Set<Comment> getAllComments() {
+		return commentRepo.getAllComments();
+	}
 }

@@ -19,7 +19,6 @@ public class UserRepoHibernate implements UserDAO {
 
 	@Autowired
 	private SessionFactory sf;
-
 	
 	@Transactional
 	@Override
@@ -60,8 +59,7 @@ public class UserRepoHibernate implements UserDAO {
 		
 		return new HashSet<User>(cr.list());
 	}
-
-
+	
 	@Override
 	@Transactional
 	public User banByUserId(int id) {
@@ -97,4 +95,6 @@ public class UserRepoHibernate implements UserDAO {
 		session.persist(u);
 		return u;
 	}
+
+
 }
