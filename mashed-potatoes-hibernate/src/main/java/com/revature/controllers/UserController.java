@@ -82,6 +82,22 @@ public class UserController {
 		return us.setRoleToAdmin(id);
 	}
 	
+	public void addMovieToWatched(int id, String mid){
+		us.addMovieToWatched(id, mid);
+	}
+	
+	public Set<Movie> getWatched(int id){
+		return us.getWatched(id);
+	}
+	
+	public void addMovieToBacklog(int id, String mid) {
+		us.addMovieToBacklog(id,mid); 
+	}
+	
+	public Set<Movie> getBacklog(int id){
+		return us.getBacklog(id);
+	}
+
 	@ExceptionHandler(CustomHttpException.class)
 	public ResponseEntity<String> customExceptionHandler(CustomHttpException e){
 		return new ResponseEntity<>(e.getMessage(), e.getStatus());
