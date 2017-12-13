@@ -38,4 +38,15 @@ export class MovieDetailsComponent implements OnInit {
       }, (failResponse) => {});
     });
   }
+
+  Watched(){
+
+
+  }
+
+  Backlog(){
+
+    
+  }
+
 }

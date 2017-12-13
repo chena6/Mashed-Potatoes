@@ -1,9 +1,11 @@
 <div *ngIf="user">
-    <ngb-accordion *ngFor="let movie of movies" [closeOthers]="true">
-      <ngb-panel id="static-1" title="{{movie.title}}">
-        <ng-template ngbPanelContent>
-  
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
-  </div>
+  <ngb-accordion *ngFor="let movie of watched" [closeOthers]="true">
+    <ngb-panel id="static-1" title="{{movie.title}}">
+      <ng-template ngbPanelContent>
+        <div>{{movie.plot}}</div>
+        <a href="/movies/{{movie.id}}">More Info</a>
+        <button type="button" class="delete" aria-label="Close" (click)="deleteBacklog">Delete from Watched</button>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>
