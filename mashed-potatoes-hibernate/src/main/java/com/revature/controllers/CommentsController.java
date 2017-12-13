@@ -46,15 +46,16 @@ public class CommentsController {
 	}
 	
 	@PostMapping
-	public void socialCreateComment(@RequestBody AuthObject auth) {
+	public Object socialCreateComment(@RequestBody AuthObject auth) {
 		Comment comm = auth.getComment();
 		log.info("In new comment controller, :" + comm);
 		csvc.createNewReview(comm);
+		return null;
 	}
 	
 	@PostMapping("delete")
-	 	public Comment moderatorDeleteCommentById(@RequestBody AuthObject auth) {
-			Integer id = (Integer) auth.getData();
-	 		return csvc.deleteCommentById(id);
-	 	}
+ 	public Object moderatorDeleteCommentById(@RequestBody AuthObject auth) {
+		Integer id = (Integer) auth.getData();
+ 		return csvc.deleteCommentById(id);
+ 	}
 }
