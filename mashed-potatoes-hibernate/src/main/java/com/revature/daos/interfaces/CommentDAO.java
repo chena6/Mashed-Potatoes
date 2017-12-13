@@ -22,4 +22,8 @@ public interface CommentDAO {
 	 * @param comm
 	 */
 	public void createComment(Comment comm);
+	
+	public Comment deleteCommentById(int id);
+
+	public Set<Comment> getAllComments();
 }

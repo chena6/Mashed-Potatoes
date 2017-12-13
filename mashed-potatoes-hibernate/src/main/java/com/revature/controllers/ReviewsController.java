@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Review;
+import com.revature.entities.User;
 import com.revature.services.ReviewService;
 
 @RestController
@@ -24,6 +25,11 @@ public class ReviewsController {
 	
 	@Autowired
 	ReviewService rs;
+	
+	@GetMapping("all")
+	public Set<Review> getAllReviews() {
+		return rs.getAllReviews();
+	}
 	
 	@GetMapping("movie={id}")
 	public Set<Review> getReviewsByMovieId(@PathVariable String id) {
@@ -41,6 +47,11 @@ public class ReviewsController {
 	public void createReview(@RequestBody Review rev) {
 		log.info("In new review controller, :" + rev);
 		rs.createNewReview(rev);
+	}
+	
+	@PostMapping("delete={id}")
+	public void deleteReview (@PathVariable int id) {
+		rs.deleteReview(id);
 	}
 	
 }

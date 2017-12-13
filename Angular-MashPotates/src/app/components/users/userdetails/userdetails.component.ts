@@ -11,7 +11,7 @@ import { environment } from '../../../../environments/environment';
 export class UserDetailsComponent implements OnInit {
 
   user: any = null;
-  id: string;
+  id: number;
 
   constructor(private http: Http, private route: ActivatedRoute) {
     this.route.params.subscribe( params => this.id = params.id );

@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "users")
@@ -27,7 +28,7 @@ public class User {
 	
 	private String email;
 	private String username;
-	@JsonIgnore
+	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
 	private String firstname;

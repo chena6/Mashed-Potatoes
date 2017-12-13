@@ -15,7 +15,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.ReviewDAO;
+import com.revature.entities.Comment;
 import com.revature.entities.Review;
+import com.revature.entities.User;
 
 @Repository
 public class ReviewRepoHibernate implements ReviewDAO {
@@ -24,6 +26,16 @@ public class ReviewRepoHibernate implements ReviewDAO {
 	
 	@Autowired
 	SessionFactory sf;
+	
+	@Transactional
+	@Override
+	public Set<Review> getAllReviews() {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(Review.class);
+		cr.add(Restrictions.gt("id", 0));
+		
+		return new HashSet<Review>(cr.list());
+	}
 	
 	@Override
 	@Transactional
@@ -67,5 +79,16 @@ public class ReviewRepoHibernate implements ReviewDAO {
 		Query avgQuery = sess.getNamedQuery("callMovieAverageStoredProcedure");
 		avgQuery.setParameter("movieId", rev.getMovie_id());
 		avgQuery.executeUpdate();
+	}
+
+	@Override
+	@Transactional
+	public void deleteReview(int id) {
+		Session session = sf.getCurrentSession();
+		Criteria cr = session.createCriteria(Review.class);
+		cr.add(Restrictions.eq("id", id));
+		Review r = (Review) cr.uniqueResult();
+		session.delete(r);
+		
 	}
 }

@@ -1,6 +1,8 @@
 import { Component,  OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../../../environments/environment';
+import { UserService } from '../../../services/UserService.service';
+import { RefreshService } from '../../../services/RefreshService.service';
 
 @Component({
   selector: 'app-comment',
@@ -9,11 +11,25 @@ import { environment } from '../../../../environments/environment';
 })
 export class CommentComponent implements OnInit {
 
+  user: any;
+
   @Input()
   comment: any;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http,private userService: UserService, private refresh: RefreshService) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.userService.currentUser.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  deleteComment(idnum: number) {
+      console.log(idnum);
+      this.http.post(environment.context + '/comments/delete=' + idnum, "").subscribe(
+          (successResponse) => {
+            this.refresh.notify();
+      },  (failResponse) => {});
+  }
 
 }
