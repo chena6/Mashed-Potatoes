@@ -39,4 +39,23 @@ export class BacklogComponent implements OnInit {
 
 
 
+  delete() {
+    const body = {
+      cred: {
+        username: this.user.username,
+        password: this.user.password
+      },
+    };
+    this.refresh.observer.subscribe(() => {
+      if (this.user) {
+        this.http.post(environment.context + '/users/', body).subscribe(
+          (successResponse) => {
+            alert(`successful deletion`);
+          }, (failResponse) => { });
+      }
+
+    });
+  }
+
+
 }

@@ -77,4 +77,14 @@ public class UserService {
 	public Set<Movie> getBacklog(int id){
 		return bd.getBacklog(id);
 	}
+	
+	public void deleteMovieFromBacklog(int id, String mid) {
+		Backlog b = new Backlog(ud.getUserById(id), md.get(mid));
+		bd.addMovieToBacklog(b);
+	}
+	
+	public void deleteMovieFromWatched(int id, String mid) {
+		Watched w = new Watched(ud.getUserById(id), md.get(mid));
+		wd.addMovieToWatched(w);
+	}
 }

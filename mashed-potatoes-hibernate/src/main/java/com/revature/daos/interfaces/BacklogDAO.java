@@ -11,4 +11,5 @@ public interface BacklogDAO {
 	
 	public Set<Movie> getBacklog(int id);
 
+	public void deleteMovieFromBacklog(Backlog b);
 }
