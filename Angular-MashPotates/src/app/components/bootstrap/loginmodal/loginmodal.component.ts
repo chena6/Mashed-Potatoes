@@ -45,12 +45,6 @@ export class LoginModalComponent implements OnInit {
 
   open(content) {
     this.modalReference = this.modalService.open(content);
-
-    this.modalReference.result.then(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
   }
 
   private getDismissReason(reason: any): string {
@@ -88,6 +82,7 @@ export class LoginModalComponent implements OnInit {
 
 
           }, (failResponse) => { });
+
           this.http.get(environment.context + `/users/watched/${this.user.id}`).subscribe((successResponse) => {
 
             this.watched = successResponse.json();

@@ -80,11 +80,11 @@ public class UserService {
 	
 	public void deleteMovieFromBacklog(int id, String mid) {
 		Backlog b = new Backlog(ud.getUserById(id), md.get(mid));
-		bd.addMovieToBacklog(b);
+		bd.deleteMovieFromBacklog(b);
 	}
 	
 	public void deleteMovieFromWatched(int id, String mid) {
 		Watched w = new Watched(ud.getUserById(id), md.get(mid));
-		wd.addMovieToWatched(w);
+		wd.deleteMovieFromWatched(w);
 	}
 }

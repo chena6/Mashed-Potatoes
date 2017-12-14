@@ -53,7 +53,7 @@ public class WatchedHibernate implements WatchedDAO {
 		Criteria crit = sess.createCriteria(Watched.class);
 		crit.add(Restrictions.eq("user", w.getUser()));
 		crit.add(Restrictions.eq("movie", w.getMovie()));
-		Movie m = (Movie) crit.uniqueResult();
+		Watched m = (Watched) crit.uniqueResult();
 		sess.delete(m);
 	}
 	

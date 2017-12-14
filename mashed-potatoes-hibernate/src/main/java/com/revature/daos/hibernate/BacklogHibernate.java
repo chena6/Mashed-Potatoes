@@ -48,12 +48,13 @@ public class BacklogHibernate implements BacklogDAO {
 		}
 
 		@Override
+		@Transactional
 		public void deleteMovieFromBacklog(Backlog b) {
 			Session sess = sf.getCurrentSession();
 			Criteria crit = sess.createCriteria(Backlog.class);
 			crit.add(Restrictions.eq("user", b.getUser()));
 			crit.add(Restrictions.eq("movie", b.getMovie()));
-			Movie m = (Movie) crit.uniqueResult();
+			Backlog m = (Backlog) crit.uniqueResult();
 			sess.delete(m);
 		}
 		

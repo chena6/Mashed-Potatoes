@@ -89,7 +89,8 @@ public class UserController {
 		return null;
 	}
 	
-	public Set<Movie> getWatched(int id){
+	@GetMapping("watched/{id}")
+	public Set<Movie> getWatched(@PathVariable int id){
 		return us.getWatched(id);
 	}
 	
@@ -99,7 +100,8 @@ public class UserController {
 		return null;
 	}
 	
-	public Set<Movie> getBacklog(int id){
+	@GetMapping("backlog/{id}")
+	public Set<Movie> getBacklog(@PathVariable int id){
 		return us.getBacklog(id);
 	}
 	
