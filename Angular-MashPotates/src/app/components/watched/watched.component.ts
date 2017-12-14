@@ -21,7 +21,7 @@ export class WatchedComponent implements OnInit {
   watched: any;
 
   constructor(private router: Router, private http: Http, private userService: UserService, private refresh: RefreshService,
-  private watchedService: WatchedService) { }
+    private watchedService: WatchedService) { }
 
   ngOnInit() {
     this.userService.currentUser.subscribe((user) => {
@@ -37,7 +37,8 @@ export class WatchedComponent implements OnInit {
       });
     });
   }
-  deleteWatched() {
+
+  deleteWatched(movieid) {
     const body = {
       cred: {
         username: this.user.username,
@@ -46,9 +47,15 @@ export class WatchedComponent implements OnInit {
     };
     this.refresh.observer.subscribe(() => {
       if (this.user) {
-        this.http.post(environment.context + '/users/', body).subscribe(
+
+        this.http.post(environment.context + '/users/watched/delete=' + this.user.id + '-' + movieid, body).subscribe(
           (successResponse) => {
-            alert(`successful deletion`);
+            this.http.get(environment.context + `/users/watched/${this.user.id}`).subscribe((successResponse2) => {
+
+              this.watched = successResponse2.json();
+              this.watchedService.setMovies(this.watched);
+
+            }, (failResponse) => { });
           }, (failResponse) => { });
       }
     });

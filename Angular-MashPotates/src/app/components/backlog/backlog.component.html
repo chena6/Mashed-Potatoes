@@ -4,7 +4,7 @@
       <ng-template ngbPanelContent>
         <div>{{movie.plot}}</div>
         <a href="/movies/{{movie.id}}">More Info</a>
-        <button type="button" class="close" aria-label="Close" (click)="deleteBacklog">Delete from Backlog</button>
+        <button type="button" class="close" aria-label="Close" (click)="deleteBacklog(movie.id)">Delete from Backlog</button>
       </ng-template>
     </ngb-panel>
   </ngb-accordion>

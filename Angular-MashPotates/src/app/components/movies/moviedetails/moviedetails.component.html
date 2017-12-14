@@ -22,8 +22,8 @@
                 <div><app-newreview *ngIf="user" [movie]="movie" class="right"></app-newreview></div>
                 <app-reviewarea [movieId]="movie.id" [score]="movie.score"></app-reviewarea>
                 
-                <button type="button" class="btn btn-primary" (click)="Watched()">Add to Watched</button>
-                <button type="button" class="btn btn-primary" (click)="Backlog()">Add to Backlog</button>
+                <button *ngIf="user" type="button" class="btn btn-primary" id="watchedbutton" (click)="Watched(movie.id)">Add to Watched</button>
+                <button *ngIf="user" type="button" class="btn btn-primary" id="backlogbutton" (click)="Backlog(movie.id)">Add to Backlog</button>
             </div>
         </div>
     </div>

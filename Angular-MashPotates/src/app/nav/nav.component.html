@@ -13,7 +13,7 @@
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item inactive" *ngIf="user && user.roleid >= 1">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Watchlist</a>
+        <a class="nav-link" routerLink="/users/{{user.id}}" routerLinkActive="active">Watchlist</a>
       </li>
       <li class="nav-item inactive" *ngIf="user && user.roleid >= 3">
         <a class="nav-link" routerLink="/admins" routerLinkActive="active">Admin Dashboard</a>
