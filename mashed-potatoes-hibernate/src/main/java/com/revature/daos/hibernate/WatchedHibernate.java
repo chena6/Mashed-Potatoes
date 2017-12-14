@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.WatchedDAO;
-import com.revature.entities.Backlog;
 import com.revature.entities.Movie;
 import com.revature.entities.Watched;
 

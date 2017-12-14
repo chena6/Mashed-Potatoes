@@ -10,10 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -38,7 +34,6 @@ public class User {
 	
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public User(int id, String email, String username, String password, String firstname, String lastname, int roleid,

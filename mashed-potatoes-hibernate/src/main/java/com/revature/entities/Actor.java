@@ -40,7 +40,6 @@ public class Actor {
 
 	public Actor() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Actor(int id, String firstname, String lastname, Set<Movie> starredIn) {

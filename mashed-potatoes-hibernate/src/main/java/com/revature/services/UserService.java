@@ -3,7 +3,6 @@ package com.revature.services;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.RootLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

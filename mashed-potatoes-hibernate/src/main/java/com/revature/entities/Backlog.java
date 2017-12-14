@@ -2,7 +2,6 @@ package com.revature.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -30,7 +29,6 @@ public class Backlog implements Serializable {
 
 	public Backlog() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Backlog(User user, Movie movie) {

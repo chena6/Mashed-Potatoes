@@ -15,9 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.ReviewDAO;
-import com.revature.entities.Comment;
 import com.revature.entities.Review;
-import com.revature.entities.User;
 
 @Repository
 public class ReviewRepoHibernate implements ReviewDAO {

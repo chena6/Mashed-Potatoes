@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.AuthObject;
 import com.revature.entities.Review;
-import com.revature.entities.User;
 import com.revature.services.ReviewService;
 
 @RestController

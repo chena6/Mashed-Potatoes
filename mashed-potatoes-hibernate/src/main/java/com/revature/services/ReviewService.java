@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.ReviewDAO;
 import com.revature.entities.Review;
-import com.revature.entities.User;
 
 @Service
 public class ReviewService {

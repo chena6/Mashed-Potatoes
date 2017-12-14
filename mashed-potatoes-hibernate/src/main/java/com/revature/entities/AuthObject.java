@@ -10,7 +10,6 @@ public class AuthObject {
 
 	public AuthObject() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public AuthObject(Credential cred, Object data, Comment comment, Review review, User user) {

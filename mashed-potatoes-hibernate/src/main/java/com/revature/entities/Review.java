@@ -46,7 +46,6 @@ public class Review implements Serializable {
 
 	public Review() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Review(int id, User user, String movie_id, String review, int score) {

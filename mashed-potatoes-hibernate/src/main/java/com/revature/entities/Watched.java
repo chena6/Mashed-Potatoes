@@ -29,7 +29,6 @@ public class Watched implements Serializable{
 
 	public Watched() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Watched(User user, Movie movie) {

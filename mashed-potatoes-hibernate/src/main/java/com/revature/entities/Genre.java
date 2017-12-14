@@ -22,7 +22,6 @@ public class Genre {
 	
 	public Genre() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Genre(int id, String genre) {

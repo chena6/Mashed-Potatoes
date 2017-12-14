@@ -1,6 +1,5 @@
 package com.revature.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +29,6 @@ public class Comment {
 
 	public Comment() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Comment(int id, User user, String movie_id, String comments) {

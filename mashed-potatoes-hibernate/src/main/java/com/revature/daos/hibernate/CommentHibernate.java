@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.interfaces.CommentDAO;
 import com.revature.entities.Comment;
-import com.revature.entities.Review;
 
 @Repository
 public class CommentHibernate implements CommentDAO {
