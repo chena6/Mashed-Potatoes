@@ -14,4 +14,5 @@ export const appRoutes: Routes = [
   { path: 'admins', component: AdminPanelComponent },
   { path: 'users/registration', component: RegistrationComponent},
   { path: 'users/:id', component: UserDetailsComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
