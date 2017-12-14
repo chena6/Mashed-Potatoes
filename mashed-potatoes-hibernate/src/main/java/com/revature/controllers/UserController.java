@@ -102,6 +102,18 @@ public class UserController {
 	public Set<Movie> getBacklog(int id){
 		return us.getBacklog(id);
 	}
+	
+	@PostMapping("backlog/delete={id}-{mid}")
+	public Object personalDeleteMovieFromBacklog(@RequestBody AuthObject auth, @PathVariable int id, @PathVariable String mid) {
+		us.deleteMovieFromBacklog(id, mid);
+		return null;
+	}
+	
+	@PostMapping("watched/delete={id}-{mid}")
+	public Object personalDeleteMovieFromWatched(@RequestBody AuthObject auth, @PathVariable int id, @PathVariable String mid) {
+		us.deleteMovieFromWatched(id, mid);
+		return null;
+	}
 
 	@ExceptionHandler(CustomHttpException.class)
 	public ResponseEntity<String> customExceptionHandler(CustomHttpException e){

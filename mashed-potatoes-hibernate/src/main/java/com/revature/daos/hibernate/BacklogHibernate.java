@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.daos.interfaces.BacklogDAO;
 import com.revature.entities.Backlog;
 import com.revature.entities.Movie;
+import com.revature.entities.Watched;
 
 @Repository
 public class BacklogHibernate implements BacklogDAO {
@@ -44,6 +45,16 @@ public class BacklogHibernate implements BacklogDAO {
 			}
 			
 			return movies;
+		}
+
+		@Override
+		public void deleteMovieFromBacklog(Backlog b) {
+			Session sess = sf.getCurrentSession();
+			Criteria crit = sess.createCriteria(Backlog.class);
+			crit.add(Restrictions.eq("user", b.getUser()));
+			crit.add(Restrictions.eq("movie", b.getMovie()));
+			Movie m = (Movie) crit.uniqueResult();
+			sess.delete(m);
 		}
 		
 		
