@@ -1,0 +1,25 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title">{{movie.title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-block my-2 my-md-0" (ngSubmit)="onSubmit()">
+            <label for="score">Your Score:</label>
+            <input [(ngModel)]="review.score" class="form-control mr-sm-2" placeholder="10" name="score" type="number" max="10" min="1" required/>
+            <label for="review">Review:</label>
+            <textarea [(ngModel)]="review.review" class="form-control mr-sm-2" placeholder="Thoughts..." name="review" type="textarea" required></textarea>
+            <button class="btn btn-primary block">Submit</button>
+        </form>
+    </div>
+    <div class="modal-footer">
+      <!--<button type="button" class="btn btn-primary" routerLink-->
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>
+  
+<button type="button" class="btn btn-primary" (click)="open(content)">New Review</button>
