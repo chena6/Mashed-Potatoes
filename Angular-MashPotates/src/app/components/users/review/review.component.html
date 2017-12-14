@@ -1,9 +1,0 @@
-<div class="card">
-    <h5>{{review.user.firstname}} {{review.user.lastname}}
-        <button *ngIf="user && user.roleid >= 3" (click)="deleteReview(review.id)" type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-    </h5>
-    <p>{{review.review}}</p>
-    <p><em>Score: {{review.score}}</em></p>
-</div>
