@@ -55,7 +55,16 @@ export class ReviewModalComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.post(environment.context + '/reviews', this.review).subscribe(
+
+    const body = {
+      cred: {
+        username: this.user.username,
+        password: this.user.password
+      },
+      review: this.review
+    };
+
+    this.http.post(environment.context + '/reviews', body).subscribe(
         (successResponse) => {
           this.refresh.notify();
           this.review = {

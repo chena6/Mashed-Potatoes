@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { UserService } from '../../services/UserService.service';
+import { BacklogService } from '../../services/BacklogService.service';
 import { RefreshService } from '../../services/RefreshService.service';
 import { environment } from '../../../environments/environment';
 
@@ -14,11 +15,12 @@ export class BacklogComponent implements OnInit {
 
   @Input()
   user: any;
+  @Input()
+  backlog: any;
 
-  movies: any;
 
-
-  constructor(private router: Router, private http: Http, private userService: UserService, private refresh: RefreshService) { }
+  constructor(private router: Router, private http: Http, private userService: UserService, private refresh: RefreshService,
+    private backlogService: BacklogService) { }
 
   ngOnInit() {
     this.userService.currentUser.subscribe((user) => {
@@ -27,14 +29,33 @@ export class BacklogComponent implements OnInit {
       this.refresh.observer.subscribe(() => {
 
         if (this.user) {
-          this.http.get(environment.context + `/users/backlog/${this.user.id}`).subscribe((successResponse) => {
-
-            this.movies = successResponse.json();
-
-          }, (failResponse) => { });
+          this.backlogService.currentUserBacklog.subscribe((backlog) => {
+            this.backlog = backlog;
+          });
         }
       });
     });
   }
+
+
+
+  delete() {
+    const body = {
+      cred: {
+        username: this.user.username,
+        password: this.user.password
+      },
+    };
+    this.refresh.observer.subscribe(() => {
+      if (this.user) {
+        this.http.post(environment.context + '/users/', body).subscribe(
+          (successResponse) => {
+            alert(`successful deletion`);
+          }, (failResponse) => { });
+      }
+
+    });
+  }
+
 
 }

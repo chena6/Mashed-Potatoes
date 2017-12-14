@@ -18,6 +18,9 @@
             </div>
             <div class="col-4 review-section">
                 <app-reviewarea [movieId]="movie.id" [score]="movie.score"></app-reviewarea>
+                
+                <button type="button" class="btn btn-primary" (click)="Watched()">Add to Watched</button>
+                <button type="button" class="btn btn-primary" (click)="Backlog()">Add to Backlog</button>
             </div>
         </div>
     </div>

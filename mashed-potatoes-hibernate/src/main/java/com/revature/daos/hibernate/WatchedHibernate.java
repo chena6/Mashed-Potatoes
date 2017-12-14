@@ -46,4 +46,15 @@ public class WatchedHibernate implements WatchedDAO {
 		return movies;
 	}
 	
+	@Override
+	@Transactional
+	public void deleteMovieFromWatched(Watched w) {
+		Session sess = sf.getCurrentSession();
+		Criteria crit = sess.createCriteria(Watched.class);
+		crit.add(Restrictions.eq("user", w.getUser()));
+		crit.add(Restrictions.eq("movie", w.getMovie()));
+		Movie m = (Movie) crit.uniqueResult();
+		sess.delete(m);
+	}
+	
 }

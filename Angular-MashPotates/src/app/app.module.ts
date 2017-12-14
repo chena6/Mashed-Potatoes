@@ -34,6 +34,8 @@ import { ReviewModalComponent } from './components/bootstrap/reviewmodal/reviewm
 import { UserService } from './services/UserService.service';
 import { RefreshService } from './services/RefreshService.service';
 import { SearchService } from './services/SearchService.service';
+import { BacklogService } from './services/BacklogService.service';
+import { WatchedService } from './services/WatchedService.service';
 
 import { appRoutes } from './routes';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -76,6 +78,8 @@ import { BacklogComponent } from './components/backlog/backlog.component';
     UserService,
     RefreshService,
     SearchService,
+    BacklogService,
+    WatchedService,
    ],
   bootstrap: [AppComponent]
 })
