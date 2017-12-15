@@ -35,7 +35,8 @@ public class ReviewService {
 		reviewRepo.createReview(rev);
 		reviewRepo.updateMovieAverage(rev);
 	}
-
+	
+	@Transactional
 	public void deleteReview(int id) {
 		Review reviewToDelete = reviewRepo.getReviewId(id);
 		reviewRepo.deleteReview(id);
