@@ -1,10 +1,27 @@
-<div *ngIf="user" class="moviebody">
-    
-    <div class="container">
-        <h2>{{user.firstname}} {{user.lastname}}</h2>
-        <app-reviewarea [userId]="user.id"></app-reviewarea>
-        <app-commentarea [userId]="user.id"></app-commentarea>
-        <app-watched [user]="user"></app-watched>
-        <app-backlog [user]="user"></app-backlog>
+<div class="container">
+    <h2>{{user.firstname}} {{user.lastname}}</h2>
+    <div *ngIf="user" class="moviebody">
+        <ngb-tabset>
+            <ngb-tab title="Reviews">
+                <ng-template ngbTabContent>
+                    <app-reviewarea [userId]="user.id"></app-reviewarea>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Comments">
+                <ng-template ngbTabContent>
+                    <app-commentarea [userId]="user.id"></app-commentarea>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Movies Watched">
+                <ng-template ngbTabContent>
+                    <app-watched [user]="user"></app-watched>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Backlog">
+                <ng-template ngbTabContent>
+                    <app-backlog [user]="user"></app-backlog>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
     </div>
 </div>
