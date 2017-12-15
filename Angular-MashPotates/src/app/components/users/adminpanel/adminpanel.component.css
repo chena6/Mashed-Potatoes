@@ -73,10 +73,38 @@
   background-color: #d9534f !important;
 }
 
-  @keyframes banhammer {
+#hammer1{
+  opacity: 0;
+}
 
-  }
-  
-  .ban #hammer{
+#hammer2{
+  opacity: 0;
+}
 
+#hammer3{
+  opacity: 0;
+}
+
+@keyframes banhammer1 {
+  0% {opacity: 1;}
+  10% {opacity: 1;}
+  33% {opacity: 1;}
+  50% {opacity: 0;}
+  100% {opacity: 0;}
+}
+
+@keyframes banhammer2 {
+  0% {opacity: 0;}
+  10% {opacity: 0;}
+  33% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes banhammer3 {
+  0% {opacity: 0;}
+  10% {opacity: 0;}
+  33% {opacity: 0;}
+  50% {opacity: 0;}
+  100% {opacity: 1;}
 }
