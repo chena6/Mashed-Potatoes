@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @NamedNativeQueries({
 	@NamedNativeQuery(
 	name = "selectTop20",
-	query = "select * from (select * from movies order by score asc) where rownum <= 20",
+	query = "select * from (select * from movies order by score desc) where rownum <= 20",
 	resultClass = Movie.class
 	)
 })
